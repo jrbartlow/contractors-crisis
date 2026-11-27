@@ -8,6 +8,163 @@ from datetime import datetime
 # --- PAGE SETUP ---
 st.set_page_config(page_title="Contractor's Crisis", page_icon="🚧", layout="centered")
 
+# --- VISUAL FORMULA SHEET GENERATOR ---
+@st.cache_data
+def generate_formula_sheet():
+    fig, axes = plt.subplots(3, 4, figsize=(12, 8.5))
+    fig.patch.set_facecolor('#102538')
+    
+    for ax in axes.flat:
+        ax.set_facecolor('#16324a')
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for spine in ax.spines.values():
+            spine.set_edgecolor('#3a6ea5')
+            spine.set_linewidth(1.5)
+
+    # --- ROW 1: 2D AREA FORMULAS ---
+    # 1. Circle
+    ax = axes[0, 0]
+    c = patches.Circle((0.5, 0.58), 0.25, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(c)
+    ax.plot([0.5, 0.75], [0.58, 0.58], color='#ffcc00', lw=2)
+    ax.text(0.625, 0.63, "r", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("CIRCLE AREA", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.14, "A = π · r²", color='white', ha='center', va='center', fontsize=11, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 2. Parallelogram / Rectangle
+    ax = axes[0, 1]
+    p = patches.Polygon([(0.2, 0.35), (0.75, 0.35), (0.85, 0.8), (0.3, 0.8)], closed=True, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(p)
+    ax.plot([0.3, 0.3], [0.35, 0.8], color='#ffcc00', ls='--', lw=1.5)
+    ax.text(0.52, 0.23, "b", color='white', ha='center', fontweight='bold', fontsize=10)
+    ax.text(0.24, 0.57, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("PARALLELOGRAM", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.1, "A = b · h", color='white', ha='center', va='center', fontsize=11, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 3. Triangle
+    ax = axes[0, 2]
+    t = patches.Polygon([(0.2, 0.35), (0.8, 0.35), (0.55, 0.82)], closed=True, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(t)
+    ax.plot([0.55, 0.55], [0.35, 0.82], color='#ffcc00', ls='--', lw=1.5)
+    ax.text(0.5, 0.23, "b", color='white', ha='center', fontweight='bold', fontsize=10)
+    ax.text(0.61, 0.57, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("TRIANGLE AREA", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.1, "A = ½ · b · h", color='white', ha='center', va='center', fontsize=11, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 4. Trapezoid
+    ax = axes[0, 3]
+    tr = patches.Polygon([(0.18, 0.35), (0.82, 0.35), (0.68, 0.8), (0.32, 0.8)], closed=True, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(tr)
+    ax.plot([0.32, 0.32], [0.35, 0.8], color='#ffcc00', ls='--', lw=1.5)
+    ax.text(0.5, 0.84, "b₁", color='white', ha='center', fontweight='bold', fontsize=9)
+    ax.text(0.5, 0.23, "b₂", color='white', ha='center', fontweight='bold', fontsize=9)
+    ax.text(0.25, 0.57, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("TRAPEZOID AREA", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.1, "A = ½(b₁ + b₂) · h", color='white', ha='center', va='center', fontsize=10, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # --- ROW 2: 3D VOLUME FORMULAS ---
+    # 5. Prism (Rectangular & General)
+    ax = axes[1, 0]
+    front = patches.Rectangle((0.22, 0.32), 0.42, 0.42, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(front)
+    ax.plot([0.22, 0.36], [0.74, 0.86], color='white', lw=1.5)
+    ax.plot([0.64, 0.78], [0.74, 0.86], color='white', lw=1.5)
+    ax.plot([0.64, 0.78], [0.32, 0.44], color='white', lw=1.5)
+    ax.plot([0.36, 0.78], [0.86, 0.86], color='white', lw=1.5)
+    ax.plot([0.78, 0.78], [0.44, 0.86], color='white', lw=1.5)
+    ax.text(0.43, 0.53, "Base
+Area (B)", color='#ffcc00', ha='center', va='center', fontsize=8, fontweight='bold')
+    ax.text(0.84, 0.65, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("PRISM VOLUME", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.13, "V = B · h
+(Rect: l · w · h)", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 6. Pyramid
+    ax = axes[1, 1]
+    base_pyr = patches.Polygon([(0.2, 0.35), (0.65, 0.35), (0.8, 0.5), (0.35, 0.5)], closed=True, edgecolor='white', facecolor='#2b547e', lw=1.5)
+    ax.add_patch(base_pyr)
+    apex = (0.5, 0.85)
+    for pt in [(0.2, 0.35), (0.65, 0.35), (0.8, 0.5)]:
+        ax.plot([pt[0], apex[0]], [pt[1], apex[1]], color='white', lw=1.8)
+    ax.plot([0.35, apex[0]], [0.5, apex[1]], color='white', ls=':', lw=1.2)
+    ax.plot([0.5, 0.5], [0.42, 0.85], color='#ffcc00', ls='--', lw=1.5)
+    ax.text(0.55, 0.62, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("PYRAMID VOLUME", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.13, "V = ⅓ · B · h", color='white', ha='center', va='center', fontsize=10.5, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 7. Cylinder
+    ax = axes[1, 2]
+    cyl_r = patches.Rectangle((0.32, 0.35), 0.36, 0.42, edgecolor='white', facecolor='#2b547e', lw=1.8)
+    top_e = patches.Ellipse((0.5, 0.77), 0.36, 0.12, edgecolor='white', facecolor='#3a6ea5', lw=1.8)
+    bot_e = patches.Ellipse((0.5, 0.35), 0.36, 0.12, edgecolor='white', ls='--', facecolor='none', lw=1.5)
+    ax.add_patch(cyl_r); ax.add_patch(bot_e); ax.add_patch(top_e)
+    ax.plot([0.5, 0.68], [0.77, 0.77], color='#ffcc00', lw=1.8)
+    ax.text(0.59, 0.82, "r", color='#ffcc00', ha='center', fontweight='bold', fontsize=9)
+    ax.text(0.75, 0.56, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("CYLINDER VOLUME", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.13, "V = π · r² · h", color='white', ha='center', va='center', fontsize=10.5, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 8. Sphere
+    ax = axes[1, 3]
+    sph = patches.Circle((0.5, 0.56), 0.25, edgecolor='white', facecolor='#2b547e', lw=2)
+    eq = patches.Ellipse((0.5, 0.56), 0.5, 0.14, edgecolor='white', ls='--', facecolor='none', lw=1.3)
+    ax.add_patch(sph); ax.add_patch(eq)
+    ax.plot([0.5, 0.75], [0.56, 0.56], color='#ffcc00', lw=2)
+    ax.text(0.62, 0.62, "r", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
+    ax.set_title("SPHERE VOLUME", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.13, "V = (4/3) · π · r³", color='white', ha='center', va='center', fontsize=10.5, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # --- ROW 3: RIGHT TRIANGLE TRIGONOMETRY & REFLECTION ---
+    # 9. Right Triangle Labels
+    ax = axes[2, 0]
+    rt = patches.Polygon([(0.2, 0.32), (0.8, 0.32), (0.8, 0.8)], closed=True, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(rt)
+    ax.add_patch(patches.Rectangle((0.73, 0.32), 0.07, 0.07, edgecolor='white', facecolor='none', lw=1.2))
+    ax.text(0.35, 0.36, "θ", color='#ffcc00', fontweight='bold', fontsize=11)
+    ax.text(0.5, 0.22, "Adjacent", color='white', ha='center', fontsize=8.5, fontweight='bold')
+    ax.text(0.89, 0.56, "Opp", color='white', ha='center', rotation=270, fontsize=8.5, fontweight='bold')
+    ax.text(0.45, 0.62, "Hyp", color='#ffcc00', ha='center', rotation=38, fontsize=8.5, fontweight='bold')
+    ax.set_title("RIGHT TRIANGLE", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.1, "SOH - CAH - TOA", color='#ffcc00', ha='center', va='center', fontsize=10, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 10. Sine
+    ax = axes[2, 1]
+    ax.set_title("SINE (SOH)", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.55, "sin(θ) = Opposite / Hypotenuse", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
+    ax.text(0.5, 0.25, "Use when finding or using
+Opposite & Hypotenuse", color='#a8d0e6', ha='center', va='center', fontsize=8.5)
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 11. Cosine
+    ax = axes[2, 2]
+    ax.set_title("COSINE (CAH)", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.55, "cos(θ) = Adjacent / Hypotenuse", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
+    ax.text(0.5, 0.25, "Use when finding or using
+Adjacent & Hypotenuse", color='#a8d0e6', ha='center', va='center', fontsize=8.5)
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    # 12. Tangent & Reflection
+    ax = axes[2, 3]
+    ax.set_title("TANGENT & REFLECTION", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
+    ax.text(0.5, 0.62, "tan(θ) = Opposite / Adjacent", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
+    ax.text(0.5, 0.25, "Reflection: Angle In = Angle Out
+(Keep calculator in DEGREE mode!)", color='#ffcc00', ha='center', va='center', fontsize=8.5, fontweight='bold')
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    plt.tight_layout(pad=1.0)
+    return fig
+
+
 # --- BLUEPRINT GENERATORS ---
 def draw_composite_floor(w1, h1, w2, h2):
     fig, ax = plt.subplots(figsize=(6, 3.8))
@@ -27,7 +184,7 @@ def draw_composite_floor(w1, h1, w2, h2):
     ax.set_xlim(-w1 * 0.2, w1 * 1.2)
     ax.set_ylim(-total_h * 0.2, total_h * 1.2)
     ax.axis('off')
-    ax.set_title("BLUEPRINT: COMPOSITE SUBFLOOR", color='white', pad=8)
+    ax.set_title("BLUEPRINT: L-SHAPED ROOM FLOORPLAN", color='white', pad=8)
     return fig
 
 def draw_cylinder_piers(diam, depth, qty):
@@ -49,7 +206,7 @@ def draw_cylinder_piers(diam, depth, qty):
     ax.set_xlim(0, 10.5)
     ax.set_ylim(0, 11.5)
     ax.axis('off')
-    ax.set_title(f"BLUEPRINT: CONCRETE PIERS (QTY: {qty})", color='white', pad=8)
+    ax.set_title(f"BLUEPRINT: SUPPORT PIER (QTY: {qty})", color='white', pad=8)
     return fig
 
 def draw_siding_wall(w, h, win_w, win_h, qty_win):
@@ -74,59 +231,59 @@ def draw_siding_wall(w, h, win_w, win_h, qty_win):
     ax.set_xlim(-w * 0.15, w * 1.15)
     ax.set_ylim(-h * 0.2, h * 1.2)
     ax.axis('off')
-    ax.set_title("BLUEPRINT: EXTERIOR SIDING ELEVATION", color='white', pad=8)
+    ax.set_title("BLUEPRINT: EXTERIOR WALL ELEVATION", color='white', pad=8)
     return fig
 
-def draw_clerestory_window(dist, angle):
+def draw_clerestory_window(dist, angle_deg):
     fig, ax = plt.subplots(figsize=(6, 3.8))
     fig.patch.set_facecolor('#1e3d59')
     ax.set_facecolor('#1e3d59')
     
-    h = dist * math.tan(math.radians(angle))
-    # Wall and floor
+    rad = math.radians(angle_deg)
+    h = dist * math.tan(rad)
+    
     ax.plot([0, 0], [0, h * 1.25], color='white', linewidth=3)
     ax.plot([0, dist * 1.2], [0, 0], color='white', linewidth=3)
-    # Sunbeam hypotenuse
-    ax.plot([0, dist], [h, 0], color='#ffcc00', linestyle='--', linewidth=2.5)
-    # Right angle box
-    sq = min(dist, h) * 0.12
-    ax.plot([0, sq, sq], [sq, sq, 0], color='white', linewidth=1)
+    ax.plot([0, 0], [h * 0.85, h], color='#00ffff', linewidth=5)
+    ax.plot([0, dist], [h, 0], color='#ffcc00', linestyle='--', linewidth=2)
     
-    ax.text(-dist * 0.08, h / 2, "Height = ? ft", color='#ffcc00', va='center', ha='right', fontweight='bold')
-    ax.text(dist / 2, -h * 0.12, f"Floor Reach = {dist} ft", color='white', ha='center', fontweight='bold')
-    ax.text(dist * 0.72, h * 0.08, f"{angle}°", color='#ffcc00', fontweight='bold')
+    ax.add_patch(patches.Rectangle((0, 0), dist * 0.08, dist * 0.08, edgecolor='white', facecolor='none'))
+    ax.text(dist * 0.72, h * 0.08, f"{angle_deg}°", color='#ffcc00', fontweight='bold', fontsize=11)
+    ax.text(dist / 2, -h * 0.14, f"Floor Reach = {dist} ft", color='white', ha='center', fontweight='bold')
+    ax.text(-dist * 0.08, h / 2, "Window
+Height = ?", color='#00ffff', ha='right', va='center', fontweight='bold')
     
-    ax.set_xlim(-dist * 0.35, dist * 1.25)
+    ax.set_xlim(-dist * 0.32, dist * 1.25)
     ax.set_ylim(-h * 0.25, h * 1.35)
     ax.axis('off')
-    ax.set_title("BLUEPRINT: CLERESTORY WINDOW LIGHT ANGLE", color='white', pad=8)
+    ax.set_title("BLUEPRINT: CLERESTORY WINDOW DAYLIGHTING", color='white', pad=8)
     return fig
 
-def draw_light_reflection(d1, d2, angle):
+def draw_light_reflection(d1, d2, angle_deg):
     fig, ax = plt.subplots(figsize=(6, 3.8))
     fig.patch.set_facecolor('#1e3d59')
     ax.set_facecolor('#1e3d59')
     
-    h1 = d1 * math.tan(math.radians(angle))
-    h2 = d2 * math.tan(math.radians(angle))
+    rad = math.radians(angle_deg)
+    h1 = d1 * math.tan(rad)
+    h2 = d2 * math.tan(rad)
     total_w = d1 + d2
-    max_h = max(h1, h2) * 1.25
+    max_h = max(h1, h2) * 1.3
     
-    # Left wall, floor, right wall
     ax.plot([0, 0], [0, max_h], color='white', linewidth=3)
-    ax.plot([0, total_w], [0, 0], color='white', linewidth=3)
     ax.plot([total_w, total_w], [0, max_h], color='white', linewidth=3)
+    ax.plot([0, total_w], [0, 0], color='white', linewidth=3)
     
-    # Light beams
     ax.plot([0, d1], [h1, 0], color='#ffcc00', linestyle='--', linewidth=2)
-    ax.plot([d1, total_w], [0, h2], color='#00ffcc', linestyle='--', linewidth=2)
-    ax.plot(d1, 0, marker='o', color='#ffcc00', markersize=6)
+    ax.plot([d1, total_w], [0, h2], color='#00ffff', linestyle='--', linewidth=2)
+    ax.scatter([d1], [0], color='#00ffff', s=60, zorder=5)
     
+    ax.text(d1 * 0.75, max_h * 0.07, f"{angle_deg}°", color='#ffcc00', fontweight='bold')
+    ax.text(d1 + d2 * 0.18, max_h * 0.07, f"{angle_deg}°", color='#00ffff', fontweight='bold')
     ax.text(d1 / 2, -max_h * 0.1, f"{d1} ft", color='white', ha='center', fontweight='bold')
     ax.text(d1 + d2 / 2, -max_h * 0.1, f"{d2} ft", color='white', ha='center', fontweight='bold')
-    ax.text(d1 - total_w * 0.09, max_h * 0.07, f"{angle}°", color='#ffcc00', fontweight='bold')
-    ax.text(d1 + total_w * 0.04, max_h * 0.07, f"{angle}°", color='#00ffcc', fontweight='bold')
-    ax.text(total_w + total_w * 0.04, h2 / 2, "Target\nHeight = ?", color='#00ffcc', va='center', fontweight='bold')
+    ax.text(total_w + total_w * 0.04, h2 / 2, "Target
+Height = ?", color='#00ffff', ha='left', va='center', fontweight='bold')
     
     ax.set_xlim(-total_w * 0.15, total_w * 1.32)
     ax.set_ylim(-max_h * 0.2, max_h * 1.1)
@@ -134,49 +291,49 @@ def draw_light_reflection(d1, d2, angle):
     ax.set_title("BLUEPRINT: REFLECTIVE LIGHT WELL", color='white', pad=8)
     return fig
 
-def draw_solar_strut(run, angle):
+def draw_solar_strut(base_run, angle_deg):
     fig, ax = plt.subplots(figsize=(6, 3.8))
     fig.patch.set_facecolor('#1e3d59')
     ax.set_facecolor('#1e3d59')
     
-    rise = run * math.tan(math.radians(angle))
-    # Roof base, vertical post, angled solar strut
-    ax.plot([0, run], [0, 0], color='white', linewidth=3)
-    ax.plot([run, run], [0, rise], color='white', linewidth=2.5)
-    ax.plot([0, run], [0, rise], color='#ffcc00', linewidth=3)
+    rad = math.radians(angle_deg)
+    rise = base_run * math.tan(rad)
     
-    sq = min(run, rise) * 0.12
-    ax.plot([run - sq, run - sq, run], [0, sq, sq], color='white', linewidth=1)
+    ax.plot([0, base_run], [0, 0], color='white', linewidth=3)
+    ax.plot([base_run, base_run], [0, rise], color='white', linestyle=':', linewidth=2)
+    ax.plot([0, base_run], [0, rise], color='#00ffff', linewidth=4)
     
-    ax.text(run / 2, -rise * 0.15, f"Roof Base Run = {run} ft", color='white', ha='center', fontweight='bold')
-    ax.text(run * 0.42, rise * 0.58, "Strut Length = ?", color='#ffcc00', ha='right', fontweight='bold')
-    ax.text(run * 0.18, rise * 0.06, f"{angle}°", color='#ffcc00', fontweight='bold')
+    ax.add_patch(patches.Rectangle((base_run * 0.92, 0), base_run * 0.08, base_run * 0.08, edgecolor='white', facecolor='none'))
+    ax.text(base_run * 0.22, rise * 0.08, f"{angle_deg}°", color='#ffcc00', fontweight='bold', fontsize=11)
+    ax.text(base_run / 2, -rise * 0.15, f"Roof Base Run = {base_run} ft", color='white', ha='center', fontweight='bold')
+    ax.text(base_run * 0.42, rise * 0.62, "Strut Length = ?", color='#00ffff', ha='right', fontweight='bold')
     
-    ax.set_xlim(-run * 0.2, run * 1.2)
-    ax.set_ylim(-rise * 0.28, rise * 1.25)
+    ax.set_xlim(-base_run * 0.15, base_run * 1.2)
+    ax.set_ylim(-rise * 0.28, rise * 1.3)
     ax.axis('off')
-    ax.set_title("BLUEPRINT: SOLAR ARRAY SUPPORT STRUT", color='white', pad=8)
+    ax.set_title("BLUEPRINT: ANGLED SOLAR ARRAY STRUT", color='white', pad=8)
     return fig
 
-def draw_guy_wire(height, angle):
+def draw_guy_wire(post_h, angle_deg):
     fig, ax = plt.subplots(figsize=(6, 3.8))
     fig.patch.set_facecolor('#1e3d59')
     ax.set_facecolor('#1e3d59')
     
-    base = height / math.tan(math.radians(angle))
-    ax.plot([0, 0], [0, height], color='white', linewidth=3.5)
-    ax.plot([0, base], [0, 0], color='white', linewidth=2.5)
-    ax.plot([0, base], [height, 0], color='#ffcc00', linestyle='--', linewidth=2.5)
+    rad = math.radians(angle_deg)
+    ground_d = post_h / math.tan(rad)
     
-    sq = min(base, height) * 0.12
-    ax.plot([0, sq, sq], [sq, sq, 0], color='white', linewidth=1)
+    ax.plot([0, 0], [0, post_h], color='white', linewidth=4)
+    ax.plot([0, ground_d], [0, 0], color='white', linewidth=3)
+    ax.plot([0, ground_d], [post_h, 0], color='#ffcc00', linestyle='--', linewidth=3)
     
-    ax.text(-base * 0.06, height / 2, f"Post Height\n= {height} ft", color='white', va='center', ha='right', fontweight='bold')
-    ax.text(base * 0.55, height * 0.55, "Cable Length = ?", color='#ffcc00', ha='left', fontweight='bold')
-    ax.text(base * 0.75, height * 0.07, f"{angle}°", color='#ffcc00', fontweight='bold')
+    ax.add_patch(patches.Rectangle((0, 0), ground_d * 0.08, ground_d * 0.08, edgecolor='white', facecolor='none'))
+    ax.text(ground_d * 0.72, post_h * 0.08, f"{angle_deg}°", color='#ffcc00', fontweight='bold', fontsize=11)
+    ax.text(-ground_d * 0.06, post_h / 2, f"Post Height
+= {post_h} ft", color='white', ha='right', va='center', fontweight='bold')
+    ax.text(ground_d * 0.55, post_h * 0.58, "Cable Length = ?", color='#ffcc00', ha='left', fontweight='bold')
     
-    ax.set_xlim(-base * 0.35, base * 1.25)
-    ax.set_ylim(-height * 0.2, height * 1.2)
+    ax.set_xlim(-ground_d * 0.35, ground_d * 1.2)
+    ax.set_ylim(-post_h * 0.2, post_h * 1.25)
     ax.axis('off')
     ax.set_title("BLUEPRINT: STRUCTURAL GUY-WIRE CABLE", color='white', pad=8)
     return fig
@@ -198,7 +355,7 @@ def draw_crisis_trench(b1, b2, depth, length):
     ax.set_xlim(-b1 * 0.2, b1 * 1.35)
     ax.set_ylim(-depth * 0.3, depth * 1.3)
     ax.axis('off')
-    ax.set_title(f"🚨 CRISIS: TRENCH GRAVEL FILL (LENGTH: {length} FT)", color='#ffcc00', pad=8)
+    ax.set_title(f"🚨 CRISIS: DRAINAGE TRENCH (LENGTH: {length} FT)", color='#ffcc00', pad=8)
     return fig
 
 def draw_crisis_gable(base, height):
@@ -217,45 +374,44 @@ def draw_crisis_gable(base, height):
     ax.set_xlim(-base * 0.15, base * 1.15)
     ax.set_ylim(-height * 0.25, height * 1.2)
     ax.axis('off')
-    ax.set_title("🚨 CRISIS: STORM-DAMAGED GABLE TARPING", color='#ffcc00', pad=8)
+    ax.set_title("🚨 CRISIS: DAMAGED ROOF GABLE", color='#ffcc00', pad=8)
     return fig
 
-def draw_crisis_glare(overhang, angle):
+def draw_crisis_overhang(overhang_w, sun_angle):
     fig, ax = plt.subplots(figsize=(6, 3.8))
     fig.patch.set_facecolor('#591e1e')
     ax.set_facecolor('#591e1e')
     
-    drop = overhang * math.tan(math.radians(angle))
-    # Wall and overhang at top
-    ax.plot([0, 0], [0, drop * 1.2], color='white', linewidth=3)
-    ax.plot([0, overhang], [drop, drop], color='#ffcc00', linewidth=3.5)
-    # Shadow ray from overhang tip to wall
-    ax.plot([overhang, 0], [drop, 0], color='#00ffcc', linestyle='--', linewidth=2)
+    rad = math.radians(sun_angle)
+    drop = overhang_w * math.tan(rad)
     
-    sq = min(overhang, drop) * 0.12
-    ax.plot([0, sq, sq], [drop - sq, drop - sq, drop], color='white', linewidth=1)
+    ax.plot([0, 0], [0, drop * 1.3], color='white', linewidth=3)
+    ax.plot([0, overhang_w], [drop, drop], color='white', linewidth=4)
+    ax.plot([overhang_w, 0], [drop, 0], color='#ffcc00', linestyle='--', linewidth=2)
     
-    ax.text(overhang / 2, drop + drop * 0.08, f"Overhang = {overhang} ft", color='#ffcc00', ha='center', fontweight='bold')
-    ax.text(-overhang * 0.08, drop / 2, "Shadow\nDrop = ?", color='#00ffcc', va='center', ha='right', fontweight='bold')
-    ax.text(overhang * 0.65, drop * 0.78, f"{angle}°", color='#00ffcc', fontweight='bold')
+    ax.add_patch(patches.Rectangle((0, drop - overhang_w * 0.08), overhang_w * 0.08, overhang_w * 0.08, edgecolor='white', facecolor='none'))
+    ax.text(overhang_w * 0.65, drop * 0.85, f"{sun_angle}°", color='#ffcc00', fontweight='bold', fontsize=11)
+    ax.text(overhang_w / 2, drop * 1.08, f"Overhang = {overhang_w} ft", color='white', ha='center', fontweight='bold')
+    ax.text(-overhang_w * 0.08, drop / 2, "Shadow
+Drop = ?", color='#00ffff', ha='right', va='center', fontweight='bold')
     
-    ax.set_xlim(-overhang * 0.45, overhang * 1.25)
-    ax.set_ylim(-drop * 0.15, drop * 1.28)
+    ax.set_xlim(-overhang_w * 0.35, overhang_w * 1.25)
+    ax.set_ylim(-drop * 0.2, drop * 1.45)
     ax.axis('off')
-    ax.set_title("🚨 CRISIS: SOLAR GLARE OVERHANG DROP", color='#ffcc00', pad=8)
+    ax.set_title("🚨 CRISIS: ROOF OVERHANG GLARE BLOCK", color='#ffcc00', pad=8)
     return fig
 
 # --- RANDOM POSITIVE WINDFALLS ---
 WINDFALL_EVENTS = [
-    {"cash": 650, "days": 0, "rep": 0,
+    {"title": "Cement Supplier Surplus!", "cash": 650, "days": 0, "rep": 0,
      "msg": "🍀 **Good News!** Local cement prices dropped due to a supplier surplus—you saved **$650**!"},
-    {"cash": 500, "days": 0, "rep": 0,
+    {"title": "Lumber Mill Rebate!", "cash": 500, "days": 0, "rep": 0,
      "msg": "🍀 **Good News!** Your lumber supplier issued a bulk-order rebate—you saved **$500**!"},
-    {"cash": 0, "days": 2, "rep": 5,
+    {"title": "Clear Skies Ahead!", "cash": 0, "days": 2, "rep": 5,
      "msg": "☀️ **Perfect Weather!** A week of dry, sunny skies let your crew work ahead of schedule (+2 days, +5% reputation)!"},
-    {"cash": 300, "days": 1, "rep": 5,
+    {"title": "Early Inspector Sign-Off!", "cash": 300, "days": 1, "rep": 5,
      "msg": "📋 **Smooth Inspection!** The county building inspector loved your framing work—saved **$300** in permit fees and gained **1 day**!"},
-    {"cash": 450, "days": 0, "rep": 0,
+    {"title": "Salvaged Hardware Find!", "cash": 450, "days": 0, "rep": 0,
      "msg": "♻️ **Smart Sourcing!** You sourced surplus architectural fixtures from another job site, saving **$450**!"}
 ]
 
@@ -272,42 +428,42 @@ def apply_cash_credit(amount):
         st.session_state.budget += amount
         return ""
 
-# --- BUILD PROJECT TIMELINE (1:4 CRISIS TO REGULAR RATIO) ---
+# --- BUILD PROJECT TIMELINE (1:4 RATIO) ---
 def generate_project_queue():
     regular_events = [
-        {"type": "regular", "subtype": "floor", "title": "Living Room Subflooring",
+        {"type": "regular", "subtype": "floor", "title": "Living Room Hardwood Order",
          "w1": random.choice([18, 20, 22]), "h1": random.choice([12, 14, 15]),
          "w2": random.choice([8, 10, 12]), "h2": random.choice([6, 8, 10]), "rate": 6},
-        {"type": "regular", "subtype": "piers", "title": "Deck Support Piers (Cement)",
+        {"type": "regular", "subtype": "piers", "title": "Deck Foundation Piers",
          "diam": random.choice([2, 4]), "depth": random.choice([6, 8, 10]),
          "qty": random.choice([4, 6, 8]), "rate": 5},
-        {"type": "regular", "subtype": "siding", "title": "Exterior Wall Siding (Subtract Windows)",
+        {"type": "regular", "subtype": "siding", "title": "Front Elevation Siding",
          "w": random.choice([24, 28, 30]), "h": random.choice([10, 12]),
-         "win_w": 3, "win_h": 4, "qty_win": random.choice([2, 3, 4]), "rate": 7},
-        {"type": "regular", "subtype": "clerestory", "title": "Clerestory Window Daylighting",
-         "dist": random.choice([12, 15, 18, 20]), "angle": random.choice([35, 42, 48, 55]), "rate": 45},
+         "win_w": 3, "win_h": 4, "qty_win": random.choice([2, 3]), "rate": 7},
+        {"type": "regular", "subtype": "slab", "title": "Garage Concrete Pour",
+         "l": random.choice([20, 22, 24]), "w": random.choice([20, 24]), "thick": 0.5, "rate": 6},
+        {"type": "regular", "subtype": "window", "title": "Clerestory Window Placement",
+         "dist": random.choice([12, 15, 18]), "angle": random.choice([35, 40, 50]), "rate": 120},
         {"type": "regular", "subtype": "reflection", "title": "Reflective Light Well Alignment",
-         "d1": random.choice([6, 8, 10]), "d2": random.choice([9, 12, 15]),
-         "angle": random.choice([38, 45, 52]), "rate": 50},
-        {"type": "regular", "subtype": "solar_strut", "title": "Solar Array Support Strut (Cosine)",
-         "run": random.choice([10, 12, 14, 16]), "angle": random.choice([25, 30, 35, 40]), "rate": 55},
-        {"type": "regular", "subtype": "guy_wire", "title": "Structural Guy-Wire Cable (Sine)",
-         "height": random.choice([15, 18, 20, 24]), "angle": random.choice([40, 45, 50, 55]), "rate": 40},
-        {"type": "regular", "subtype": "slab", "title": "Garage Concrete Slab",
-         "l": random.choice([20, 22, 24]), "w": random.choice([18, 20]), "thick": 0.5, "rate": 6},
+         "d1": random.choice([6, 8, 10]), "d2": random.choice([8, 10, 12]),
+         "angle": random.choice([38, 45, 52]), "rate": 110},
+        {"type": "regular", "subtype": "strut", "title": "Solar Panel Support Strut",
+         "base_run": random.choice([8, 10, 12]), "angle": random.choice([30, 35, 40]), "rate": 95},
+        {"type": "regular", "subtype": "guywire", "title": "Structural Guy-Wire Anchor",
+         "post_h": random.choice([12, 15, 18]), "angle": random.choice([40, 50, 55]), "rate": 85},
     ]
     
     crisis_events = [
         {"type": "crisis", "subtype": "trench", "title": "🚨 CRISIS: Flash Flood Washout!",
-         "desc": "Heavy rain washed out the access road! Fill this trapezoidal drainage trench with crushed gravel immediately to keep supply trucks moving.",
-         "b1": random.choice([8, 10, 12]), "b2": random.choice([4, 6]),
-         "depth": random.choice([3, 4, 5]), "length": random.choice([20, 25, 30]), "rate": 4},
+         "desc": "Heavy rain washed out the site access road! Fill the trapezoidal drainage trench with crushed gravel immediately so concrete trucks can reach the lot.",
+         "b1": random.choice([6, 8, 10]), "b2": random.choice([2, 4]),
+         "depth": random.choice([3, 4, 5]), "length": random.choice([15, 20, 25]), "rate": 4},
         {"type": "crisis", "subtype": "gable", "title": "🚨 CRISIS: High Winds Tear Roof Sheathing!",
-         "desc": "A sudden windstorm ripped the sheathing off the triangular front gable before shingles were installed! Order emergency weather-barrier panels before rain hits.",
+         "desc": "A sudden windstorm ripped the sheathing off the triangular front gable before shingles were installed! Order weather-barrier panels before rain hits.",
          "base": random.choice([20, 24, 28]), "height": random.choice([8, 10, 12]), "rate": 9},
-        {"type": "crisis", "subtype": "glare", "title": "🚨 CRISIS: Client Solar Glare Complaint!",
-         "desc": "Afternoon sun is blinding the client's workspace! Build a custom horizontal roof overhang that casts the exact vertical shadow drop required to block the window.",
-         "overhang": random.choice([4, 5, 6]), "angle": random.choice([48, 54, 60]), "rate": 65}
+        {"type": "crisis", "subtype": "overhang", "title": "🚨 CRISIS: Solar Glare Inspection Hold!",
+         "desc": "The building inspector flagged dangerous afternoon glare entering the glass entryway! Build a horizontal roof overhang that casts the exact vertical shadow drop shown below.",
+         "overhang_w": random.choice([4, 5, 6]), "sun_angle": random.choice([55, 60, 65]), "rate": 140}
     ]
     
     selected_regular = random.sample(regular_events, 8)
@@ -328,9 +484,9 @@ if "started" not in st.session_state:
     st.session_state.reputation = 100
     st.session_state.queue = generate_project_queue()
     st.session_state.history = []
+    st.session_state.hints_level = {} # Tracks 0, 1, 2, or 3 hints unlocked per stage
+    st.session_state.total_paid_hints = 0
     st.session_state.exact_count = 0
-    st.session_state.hints_used = 0
-    st.session_state.hint_unlocked = {}
 
 def reset_game():
     st.session_state.started = False
@@ -341,9 +497,9 @@ def reset_game():
     st.session_state.reputation = 100
     st.session_state.queue = generate_project_queue()
     st.session_state.history = []
+    st.session_state.hints_level = {}
+    st.session_state.total_paid_hints = 0
     st.session_state.exact_count = 0
-    st.session_state.hints_used = 0
-    st.session_state.hint_unlocked = {}
 
 def process_transaction(cost, is_exact, msg_exact, msg_error):
     bonus = 750 if is_exact else 0
@@ -389,11 +545,11 @@ st.divider()
 if not st.session_state.started:
     st.subheader("Welcome to Contractor's Crisis!")
     st.write("""
-    You have **45 days** and **$45,000** to complete a 10-stage construction build.
-    * **Regular Milestones (8):** Solve 2D area, 3D volume, right-triangle light angles, reflection, and sine/cosine strut/cable blueprints.
-    * **Crisis Events (2):** Unexpected storms, washouts, and solar glare emergencies will strike!
-    * **Free Formulas & Paid Engineer Hints:** Use the free Formula Sheet anytime, or hire a Senior Engineer (**-$250**) for a step-by-step walkthrough.
-    * **Borrowing & Recovery:** Overruns trigger an **Emergency Line of Credit** (15% fee). Exact answers earn a **$750 Precision Bonus** that pays down debt!
+    You have **45 days** and **$45,000** to complete a 10-stage construction project. 
+    * **Regular Milestones (8):** Order materials and size architectural fixtures accurately using 2D Area, 3D Volume, and Right-Triangle Trigonometry.
+    * **Crisis Events (2):** Unexpected site emergencies will strike!
+    * **Free Visual Formula Sheet:** Reference all 2D, 3D, and Trigonometry diagrams at any time for free.
+    * **Progressive Engineer Hints ($250 each):** Stuck on a job? Unlock up to **3 step-by-step hints** per stage—from identifying what needs to be measured all the way to the filled-in formula.
     """)
     name_input = st.text_input("Enter Contractor / Student Name:", value=st.session_state.student_name, placeholder="e.g., Jordan Smith")
     if st.button("Break Ground ➡️"):
@@ -414,8 +570,9 @@ elif st.session_state.idx < len(st.session_state.queue):
             elif status == "info":
                 st.info(text)
 
-    event = st.session_state.queue[st.session_state.idx]
-    st.caption(f"CONTRACTOR: {st.session_state.student_name.upper()} | STAGE {st.session_state.idx + 1} OF {len(st.session_state.queue)}")
+    stage_num = st.session_state.idx
+    event = st.session_state.queue[stage_num]
+    st.caption(f"STAGE {stage_num + 1} OF {len(st.session_state.queue)} | CONTRACTOR: {st.session_state.student_name.upper()}")
     
     if event["type"] == "crisis":
         st.subheader(event["title"])
@@ -425,131 +582,169 @@ elif st.session_state.idx < len(st.session_state.queue):
 
     sub = event["subtype"]
     
+    # --- CONFIGURE SCENARIO TASK, BLUEPRINT, AND 3 PROGRESSIVE HINTS ---
     if sub == "floor":
-        st.write(f"Calculate the total area of the composite L-shaped room below. Flooring costs **${event['rate']}/sq ft**.")
+        st.write(f"Determine how many square feet of hardwood flooring need to be ordered to cover the entire L-shaped room shown below. Flooring costs **${event['rate']}/sq ft**.")
         st.pyplot(draw_composite_floor(event["w1"], event["h1"], event["w2"], event["h2"]))
         correct = (event["w1"] * event["h1"]) + (event["w2"] * event["h2"])
         unit = "sq ft"
         tol = 0
-        formula_txt = "**Area of Composite Rectangles:** Split into two rectangles: $A = (l_1 \times w_1) + (l_2 \times w_2)$"
-        paid_hint_txt = f"1. Bottom rectangle: ${event['w1']} \times {event['h1']} = {event['w1']*event['h1']}$ sq ft.\n2. Top alcove rectangle: ${event['w2']} \times {event['h2']} = {event['w2']*event['h2']}$ sq ft.\n3. Add both areas together."
+        hints = [
+            "**Hint 1 (Goal):** You need to find the total 2D floor area of the L-shaped room by splitting it into two separate rectangles.",
+            "**Hint 2 (Formula):** Use the parallelogram/rectangle area formula **A = b · h** on the bottom section and the top alcove, then add them together.",
+            f"**Hint 3 (Setup):** Bottom rectangle = **({event['w1']} × {event['h1']})** + Top alcove = **({event['w2']} × {event['h2']})**."
+        ]
 
     elif sub == "piers":
-        st.write(f"Calculate the total volume of concrete needed for **{event['qty']} cylindrical piers** (round to nearest whole cubic foot). Concrete costs **${event['rate']}/cu ft**.")
+        st.write(f"Determine how many cubic feet of cement need to be ordered to pour all **{event['qty']} cylindrical support piers** (round to the nearest whole cubic foot). Cement costs **${event['rate']}/cu ft**.")
         st.pyplot(draw_cylinder_piers(event["diam"], event["depth"], event["qty"]))
         r = event["diam"] / 2
         correct = round(math.pi * (r ** 2) * event["depth"] * event["qty"])
         unit = "cu ft"
         tol = 2
-        formula_txt = "**Volume of a Cylinder:** $V = \pi r^2 h$ (Remember: radius $r = \frac{\text{diameter}}{2}$)"
-        paid_hint_txt = f"1. Find radius: $r = {event['diam']} \div 2 = {r}$ ft.\n2. Volume of 1 pier: $\pi \times ({r})^2 \times {event['depth']}$.\n3. Multiply by **{event['qty']} piers** and round to the nearest whole number."
+        hints = [
+            "**Hint 1 (Goal):** Calculate the 3D volume of one cylindrical pier, then multiply by the total number of piers.",
+            "**Hint 2 (Formula):** Use the cylinder volume formula **V = π · r² · h** (remember that radius **r** is half of the diameter!).",
+            f"**Hint 3 (Setup):** Radius = **{r} ft**. Total Cement = **π · ({r}²) · {event['depth']} · {event['qty']}**."
+        ]
 
     elif sub == "siding":
-        st.write(f"Calculate the net wall area requiring siding (**subtract the windows**). Siding costs **${event['rate']}/sq ft**.")
+        st.write(f"Determine how many square feet of exterior siding need to be ordered to cover the front wall without covering the windows. Siding costs **${event['rate']}/sq ft**.")
         st.pyplot(draw_siding_wall(event["w"], event["h"], event["win_w"], event["win_h"], event["qty_win"]))
         correct = (event["w"] * event["h"]) - (event["qty_win"] * event["win_w"] * event["win_h"])
         unit = "sq ft"
         tol = 0
-        formula_txt = "**Net Area:** $A_{\text{net}} = (W_{\text{wall}} \times H_{\text{wall}}) - (\text{Qty} \times W_{\text{window}} \times H_{\text{window}})$"
-        paid_hint_txt = f"1. Total wall area: ${event['w']} \times {event['h']} = {event['w']*event['h']}$ sq ft.\n2. One window area: ${event['win_w']} \times {event['win_h']} = {event['win_w']*event['win_h']}$ sq ft.\n3. Subtract all **{event['qty_win']} windows** from the total wall area."
+        hints = [
+            "**Hint 1 (Goal):** Find the net surface area of the wall by subtracting the area of all windows from the total rectangular wall area.",
+            "**Hint 2 (Formula):** Use **A = b · h** to find the full wall area, then subtract **(Number of Windows × b · h)**.",
+            f"**Hint 3 (Setup):** Full Wall = **({event['w']} × {event['h']})** minus Windows = **{event['qty_win']} × ({event['win_w']} × {event['win_h']})**."
+        ]
 
     elif sub == "slab":
-        st.write(f"Pour a rectangular concrete slab measuring **{event['l']} ft long × {event['w']} ft wide × {event['thick']} ft (6 inches) thick**. Concrete costs **${event['rate']}/cu ft**.")
+        st.write(f"Determine how many cubic feet of cement need to be ordered to pour a rectangular garage foundation measuring **{event['l']} ft long × {event['w']} ft wide × {event['thick']} ft (6 inches) thick**. Cement costs **${event['rate']}/cu ft**.")
         correct = round(event["l"] * event["w"] * event["thick"])
         unit = "cu ft"
         tol = 0
-        formula_txt = "**Volume of a Rectangular Prism:** $V = l \times w \times h$"
-        paid_hint_txt = f"Multiply length × width × thickness in feet: ${event['l']} \times {event['w']} \times {event['thick']}$."
+        hints = [
+            "**Hint 1 (Goal):** Calculate the 3D volume of the rectangular concrete foundation slab.",
+            "**Hint 2 (Formula):** Use the rectangular prism volume formula **V = l · w · h** (make sure all dimensions are in feet).",
+            f"**Hint 3 (Setup):** Concrete Volume = **{event['l']} × {event['w']} × {event['thick']}**."
+        ]
 
-    elif sub == "clerestory":
-        st.write(f"To illuminate a spot **{event['dist']} ft** across the floor when the sun is at a **{event['angle']}°** elevation angle, how high up the wall must the bottom of the clerestory window be? (Round to nearest whole foot; framing costs **${event['rate']}/ft**).")
+    elif sub == "window":
+        st.write(f"At noon, sunlight enters at a **{event['angle']}°** angle and must reach **{event['dist']} ft** across the floor. Determine how high above the floor (to the nearest whole foot) the top of the clerestory window must be placed. Framing costs **${event['rate']}/ft** of height.")
         st.pyplot(draw_clerestory_window(event["dist"], event["angle"]))
         correct = round(event["dist"] * math.tan(math.radians(event["angle"])))
         unit = "ft"
         tol = 1
-        formula_txt = "**Right-Triangle Tangent:** $\tan(\theta) = \frac{\text{Opposite}}{\text{Adjacent}}$ *(Ensure calculator is in DEGREE mode)*"
-        paid_hint_txt = f"1. Relative to the {event['angle']}° angle, the window height is **Opposite** and {event['dist']} ft is **Adjacent**.\n2. Set up: $\tan({event['angle']}^\circ) = \frac{{h}}{{{event['dist']}}}$.\n3. Solve: $h = {event['dist']} \times \tan({event['angle']}^\circ)$."
+        hints = [
+            "**Hint 1 (Goal):** Find the missing vertical height (the side opposite the angle) of the right triangle formed by the sunbeam.",
+            "**Hint 2 (Formula):** Since you have the Adjacent side and need the Opposite side, use **tan(θ) = Opposite / Adjacent**.",
+            f"**Hint 3 (Setup):** **tan({event['angle']}°) = Height / {event['dist']}**, so Height = **{event['dist']} × tan({event['angle']}°)**."
+        ]
 
     elif sub == "reflection":
-        st.write(f"A sunbeam enters a skylight, hits a floor mirror **{event['d1']} ft** from the left wall at a **{event['angle']}°** angle, and reflects across **{event['d2']} ft** to hit a solar collector on the right wall. At what height does it hit the right wall? (Round to nearest whole foot; mounting costs **${event['rate']}/ft**).")
+        st.write(f"A sunbeam enters at **{event['angle']}°**, bounces off a floor mirror **{event['d1']} ft** from the left wall, and hits the opposite wall **{event['d2']} ft** away. Determine at what height (to the nearest whole foot) the reflector panel must be mounted on the right wall. Mounting costs **${event['rate']}/ft**.")
         st.pyplot(draw_light_reflection(event["d1"], event["d2"], event["angle"]))
         correct = round(event["d2"] * math.tan(math.radians(event["angle"])))
         unit = "ft"
         tol = 1
-        formula_txt = "**Law of Reflection & Tangent:** Angle of incidence = Angle of reflection ($\theta$). Use $\tan(\theta) = \frac{\text{Opposite}}{\text{Adjacent}}$ on the right triangle."
-        paid_hint_txt = f"1. By the Law of Reflection, the reflected angle with the floor on the right is also **{event['angle']}°**.\n2. Focus on the right-hand triangle with base **{event['d2']} ft**.\n3. Calculate: $\text{Height} = {event['d2']} \times \tan({event['angle']}^\circ)$."
+        hints = [
+            "**Hint 1 (Goal):** Use the Law of Reflection (angle in = angle out) to find the vertical height on the right-hand right triangle.",
+            "**Hint 2 (Formula):** On the right-hand triangle, you know the Adjacent floor distance and the angle, so use **tan(θ) = Opposite / Adjacent**.",
+            f"**Hint 3 (Setup):** **tan({event['angle']}°) = Target Height / {event['d2']}**, so Target Height = **{event['d2']} × tan({event['angle']}°)**."
+        ]
 
-    elif sub == "solar_strut":
-        st.write(f"An angled solar panel support strut rises at **{event['angle']}°** across a horizontal roof base run of **{event['run']} ft**. Calculate the diagonal length (hypotenuse) of the steel strut needed (round to nearest whole foot; steel costs **${event['rate']}/ft**).")
-        st.pyplot(draw_solar_strut(event["run"], event["angle"]))
-        correct = round(event["run"] / math.cos(math.radians(event["angle"])))
+    elif sub == "strut":
+        st.write(f"A solar panel frame spans a **{event['base_run']} ft** horizontal roof run and tilts upward at **{event['angle']}°**. Determine the required length (to the nearest whole foot) of the diagonal support strut. Steel struts cost **${event['rate']}/ft**.")
+        st.pyplot(draw_solar_strut(event["base_run"], event["angle"]))
+        correct = round(event["base_run"] / math.cos(math.radians(event["angle"])))
         unit = "ft"
         tol = 1
-        formula_txt = "**Right-Triangle Cosine:** $\cos(\theta) = \frac{\text{Adjacent}}{\text{Hypotenuse}}$ *(Ensure calculator is in DEGREE mode)*"
-        paid_hint_txt = f"1. Relative to {event['angle']}°, the {event['run']} ft roof base is **Adjacent** and the strut is the **Hypotenuse**.\n2. Set up: $\cos({event['angle']}^\circ) = \frac{{{event['run']}}}{{L}}$.\n3. Solve: $L = \frac{{{event['run']}}}{{\cos({event['angle']}^\circ)}}$."
+        hints = [
+            "**Hint 1 (Goal):** Find the length of the slanted diagonal side (the Hypotenuse) of the right triangle.",
+            "**Hint 2 (Formula):** Since you know the Adjacent horizontal run and need the Hypotenuse, use **cos(θ) = Adjacent / Hypotenuse**.",
+            f"**Hint 3 (Setup):** **cos({event['angle']}°) = {event['base_run']} / Strut**, so Strut Length = **{event['base_run']} / cos({event['angle']}°)**."
+        ]
 
-    elif sub == "guy_wire":
-        st.write(f"A vertical support post is **{event['height']} ft** tall. A diagonal guy-wire cable attaches to the top of the post and anchors to the ground at a **{event['angle']}°** angle. Calculate the required cable length (round to nearest whole foot; cable costs **${event['rate']}/ft**).")
-        st.pyplot(draw_guy_wire(event["height"], event["angle"]))
-        correct = round(event["height"] / math.sin(math.radians(event["angle"])))
+    elif sub == "guywire":
+        st.write(f"A **{event['post_h']} ft** tall vertical structural post must be braced by a steel guy-wire anchored to the ground at a **{event['angle']}°** angle. Determine the required cable length (to the nearest whole foot). Cable costs **${event['rate']}/ft**.")
+        st.pyplot(draw_guy_wire(event["post_h"], event["angle"]))
+        correct = round(event["post_h"] / math.sin(math.radians(event["angle"])))
         unit = "ft"
         tol = 1
-        formula_txt = "**Right-Triangle Sine:** $\sin(\theta) = \frac{\text{Opposite}}{\text{Hypotenuse}}$ *(Ensure calculator is in DEGREE mode)*"
-        paid_hint_txt = f"1. Relative to {event['angle']}°, the {event['height']} ft post is **Opposite** and the cable is the **Hypotenuse**.\n2. Set up: $\sin({event['angle']}^\circ) = \frac{{{event['height']}}}{{L}}$.\n3. Solve: $L = \frac{{{event['height']}}}{{\sin({event['angle']}^\circ)}}$."
+        hints = [
+            "**Hint 1 (Goal):** Find the length of the diagonal cable (the Hypotenuse) stretching from the top of the post to the ground.",
+            "**Hint 2 (Formula):** Since you know the Opposite vertical height and need the Hypotenuse, use **sin(θ) = Opposite / Hypotenuse**.",
+            f"**Hint 3 (Setup):** **sin({event['angle']}°) = {event['post_h']} / Cable**, so Cable Length = **{event['post_h']} / sin({event['angle']}°)**."
+        ]
 
     elif sub == "trench":
-        st.write(f"Calculate the volume of gravel needed to fill this **{event['length']}-foot-long** trapezoidal trench. Gravel costs **${event['rate']}/cu ft**.")
+        st.write(f"Determine how many cubic feet of crushed gravel need to be ordered to completely fill this **{event['length']}-foot-long** trapezoidal drainage trench. Gravel costs **${event['rate']}/cu ft**.")
         st.pyplot(draw_crisis_trench(event["b1"], event["b2"], event["depth"], event["length"]))
         correct = round(0.5 * (event["b1"] + event["b2"]) * event["depth"] * event["length"])
         unit = "cu ft"
         tol = 0
-        formula_txt = "**Volume of a Trapezoidal Prism:** $V = \frac{1}{2}(b_1 + b_2) \times h \times \text{Length}$"
-        paid_hint_txt = f"1. Trapezoid cross-section area: $0.5 \times ({event['b1']} + {event['b2']}) \times {event['depth']}$.\n2. Multiply that area by the trench length (**{event['length']} ft**)."
+        hints = [
+            "**Hint 1 (Goal):** Find the 3D volume of the trapezoidal prism by finding the area of its trapezoid face first, then multiplying by the trench length.",
+            "**Hint 2 (Formula):** Use **A = ½(b₁ + b₂) · h** for the trapezoid cross-section, then **V = B · length**.",
+            f"**Hint 3 (Setup):** Trapezoid Base Area = **0.5 × ({event['b1']} + {event['b2']}) × {event['depth']}**, then multiply by **{event['length']} ft**."
+        ]
 
     elif sub == "gable":
-        st.write(f"Calculate the triangular area of the damaged gable end to order weather-barrier panels. Panels cost **${event['rate']}/sq ft**.")
+        st.write(f"Determine how many square feet of weather-barrier panels need to be ordered to cover the triangular roof gable. Panels cost **${event['rate']}/sq ft**.")
         st.pyplot(draw_crisis_gable(event["base"], event["height"]))
         correct = round(0.5 * event["base"] * event["height"])
         unit = "sq ft"
         tol = 0
-        formula_txt = "**Area of a Triangle:** $A = \frac{1}{2} \times \text{base} \times \text{height}$"
-        paid_hint_txt = f"Calculate $0.5 \times {event['base']} \times {event['height']}$."
+        hints = [
+            "**Hint 1 (Goal):** Find the 2D area of the triangular front gable section.",
+            "**Hint 2 (Formula):** Use the triangle area formula **A = ½ · b · h**.",
+            f"**Hint 3 (Setup):** Gable Area = **0.5 × {event['base']} × {event['height']}**."
+        ]
 
-    elif sub == "glare":
-        st.write(f"A horizontal overhang extends **{event['overhang']} ft** out from the wall. When the sun shines down at a **{event['angle']}°** angle from the horizontal overhang, what vertical shadow drop does it cast down the wall? (Round to nearest whole foot; materials cost **${event['rate']}/ft**).")
-        st.pyplot(draw_crisis_glare(event["overhang"], event["angle"]))
-        correct = round(event["overhang"] * math.tan(math.radians(event["angle"])))
+    elif sub == "overhang":
+        st.write(f"When the sun is at a **{event['sun_angle']}°** angle, a **{event['overhang_w']} ft** horizontal roof overhang blocks direct glare from hitting the glass below. Determine the vertical shadow drop (to the nearest whole foot) cast along the wall. Framing costs **${event['rate']}/ft**.")
+        st.pyplot(draw_crisis_overhang(event["overhang_w"], event["sun_angle"]))
+        correct = round(event["overhang_w"] * math.tan(math.radians(event["sun_angle"])))
         unit = "ft"
         tol = 1
-        formula_txt = "**Right-Triangle Tangent:** $\tan(\theta) = \frac{\text{Opposite}}{\text{Adjacent}}$"
-        paid_hint_txt = f"1. Relative to {event['angle']}°, the vertical shadow drop is **Opposite** and the {event['overhang']} ft overhang is **Adjacent**.\n2. Calculate: $\text{Drop} = {event['overhang']} \times \tan({event['angle']}^\circ)$."
+        hints = [
+            "**Hint 1 (Goal):** Find the missing vertical shadow height (the side opposite the angle) on the right triangle beneath the overhang.",
+            "**Hint 2 (Formula):** Since you have the Adjacent overhang width and need the Opposite vertical drop, use **tan(θ) = Opposite / Adjacent**.",
+            f"**Hint 3 (Setup):** **tan({event['sun_angle']}°) = Drop / {event['overhang_w']}**, so Shadow Drop = **{event['overhang_w']} × tan({event['sun_angle']}°)**."
+        ]
 
     # --- TWO-TIER HINT SYSTEM ---
-    h_col1, h_col2 = st.columns(2)
-    with h_col1:
-        with st.expander("📐 Free Blueprint Formula Sheet"):
-            st.markdown(formula_txt)
-    with h_col2:
-        stage_key = f"hint_{st.session_state.idx}"
-        if st.session_state.hint_unlocked.get(stage_key, False):
-            st.info(f"👷 **Engineer Walkthrough:**\n\n{paid_hint_txt}")
-        else:
-            if st.button("👷 Hire Engineer Hint (-$250)", key=f"btn_hint_{st.session_state.idx}"):
-                st.session_state.hint_unlocked[stage_key] = True
-                st.session_state.hints_used += 1
+    with st.expander("📐 Free Visual Formula Reference Sheet (2D, 3D & Trig)"):
+        st.pyplot(generate_formula_sheet())
+
+    current_hint_lvl = st.session_state.hints_level.get(stage_num, 0)
+    
+    col_h1, col_h2 = st.columns([1, 2])
+    with col_h1:
+        if current_hint_lvl < 3:
+            btn_label = f"👷 Hire Engineer Hint {current_hint_lvl + 1}/3 (-$250)"
+            if st.button(btn_label, key=f"hint_btn_{stage_num}"):
+                st.session_state.hints_level[stage_num] = current_hint_lvl + 1
+                st.session_state.total_paid_hints += 1
                 st.session_state.budget -= 250
                 if st.session_state.budget < 0:
                     shortfall = abs(st.session_state.budget)
-                    st.session_state.debt += round(shortfall * 1.15)
+                    st.session_state.debt += shortfall
                     st.session_state.budget = 0
                 st.rerun()
+        else:
+            st.button("✅ All 3 Hints Unlocked", disabled=True, key=f"hint_done_{stage_num}")
 
-    st.divider()
+    # Display all unlocked progressive hints for this stage
+    for lvl in range(current_hint_lvl):
+        st.info(hints[lvl])
 
     # --- STUDENT INPUT & SUBMISSION ---
-    user_ans = st.number_input(f"Enter your calculation ({unit}):", min_value=0, step=1, key=f"ans_{st.session_state.idx}")
+    user_ans = st.number_input(f"Enter your order quantity ({unit}):", min_value=0, step=1, key=f"ans_{stage_num}")
     
-    if st.button("Place Material Order 📦", key=f"btn_{st.session_state.idx}"):
+    if st.button("Place Material Order 📦", key=f"btn_{stage_num}"):
         st.session_state.history = []
         base_cost = correct * event["rate"]
         
@@ -597,36 +792,37 @@ else:
 
     st.subheader("🏁 Build Complete: Final Company Audit")
     net_profit = st.session_state.budget - st.session_state.debt
-    accuracy_pct = round((st.session_state.exact_count / len(st.session_state.queue)) * 100)
-    timestamp = datetime.now().strftime("%Y-%m-%d %I:%M %p")
+    total_stages = len(st.session_state.queue)
+    accuracy_pct = round((st.session_state.exact_count / total_stages) * 100)
     
     if net_profit > 0 and st.session_state.days >= 0 and st.session_state.debt == 0:
         st.balloons()
-        rank = "MASTER CONTRACTOR"
-        st.success(f"🏆 **{rank}!** You finished with **${net_profit:,}** net profit, **$0 debt**, and **{st.session_state.days} days** to spare!")
+        outcome = "MASTER CONTRACTOR (PASSED ON TIME & UNDER BUDGET)"
+        st.success(f"🏆 **Master Contractor!** You finished with **${net_profit:,}** net profit, **$0 debt**, and **{st.session_state.days} days** to spare!")
     elif net_profit > 0 and st.session_state.debt > 0:
-        rank = "CRISIS SURVIVOR"
-        st.warning(f"⚠️ **{rank}!** You finished with **${st.session_state.debt:,}** in remaining credit debt, leaving a net balance of **${net_profit:,}**.")
+        outcome = "SURVIVED THE CRISIS (FINISHED WITH CREDIT DEBT)"
+        st.warning(f"⚠️ **Survived the Crisis!** You finished with **${st.session_state.debt:,}** in remaining credit debt, leaving a net balance of **${net_profit:,}**.")
     else:
-        rank = "BUDGET OVERRUN"
-        st.error(f"📉 **{rank}!** Cost overruns and crisis events left your company **${abs(net_profit):,}** in the hole.")
+        outcome = "BUDGET OVERRUN / DEADLINE MISSED"
+        st.error(f"📉 **Bankruptcy Warning!** Cost overruns and crisis events left your company **${abs(net_profit):,}** in the hole.")
 
-    receipt_text = f"""========================================
-   CONTRACTOR'S CRISIS - AUDIT RECEIPT
-========================================
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    receipt_text = f"""==================================================
+        CONTRACTOR'S CRISIS - FINAL AUDIT
+==================================================
 Contractor Name : {st.session_state.student_name}
-Date Completed  : {timestamp}
-Final Standing  : {rank}
-----------------------------------------
-Blueprint Accuracy : {st.session_state.exact_count}/{len(st.session_state.queue)} ({accuracy_pct}%)
-Paid Hints Used    : {st.session_state.hints_used} (-${st.session_state.hints_used * 250:,})
-Days Remaining     : {st.session_state.days} days
-Client Reputation  : {st.session_state.reputation}%
-----------------------------------------
-Remaining Cash     : ${st.session_state.budget:,}
-Credit Debt Owed   : ${st.session_state.debt:,}
-NET PROJECT PROFIT : ${net_profit:,}
-========================================
+Completion Date : {timestamp}
+Project Status  : {outcome}
+--------------------------------------------------
+Exact Blueprints: {st.session_state.exact_count} / {total_stages} ({accuracy_pct}%)
+Paid Hints Used : {st.session_state.total_paid_hints} (-${st.session_state.total_paid_hints * 250:,})
+Days Remaining  : {st.session_state.days} days
+Client Rating   : {st.session_state.reputation}%
+--------------------------------------------------
+Remaining Cash  : ${st.session_state.budget:,}
+Unpaid Debt     : ${st.session_state.debt:,}
+NET PROFIT      : ${net_profit:,}
+==================================================
 """
     st.code(receipt_text, language="text")
     
