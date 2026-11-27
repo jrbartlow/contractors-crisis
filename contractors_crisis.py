@@ -77,12 +77,10 @@ def generate_formula_sheet():
     ax.plot([0.64, 0.78], [0.32, 0.44], color='white', lw=1.5)
     ax.plot([0.36, 0.78], [0.86, 0.86], color='white', lw=1.5)
     ax.plot([0.78, 0.78], [0.44, 0.86], color='white', lw=1.5)
-    ax.text(0.43, 0.53, "Base
-Area (B)", color='#ffcc00', ha='center', va='center', fontsize=8, fontweight='bold')
+    ax.text(0.43, 0.53, "Base\nArea (B)", color='#ffcc00', ha='center', va='center', fontsize=8, fontweight='bold')
     ax.text(0.84, 0.65, "h", color='#ffcc00', ha='center', fontweight='bold', fontsize=10)
     ax.set_title("PRISM VOLUME", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
-    ax.text(0.5, 0.13, "V = B · h
-(Rect: l · w · h)", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
+    ax.text(0.5, 0.13, "V = B · h\n(Rect: l · w · h)", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
     # 6. Pyramid
@@ -141,24 +139,21 @@ Area (B)", color='#ffcc00', ha='center', va='center', fontsize=8, fontweight='bo
     ax = axes[2, 1]
     ax.set_title("SINE (SOH)", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
     ax.text(0.5, 0.55, "sin(θ) = Opposite / Hypotenuse", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
-    ax.text(0.5, 0.25, "Use when finding or using
-Opposite & Hypotenuse", color='#a8d0e6', ha='center', va='center', fontsize=8.5)
+    ax.text(0.5, 0.25, "Use when finding or using\nOpposite & Hypotenuse", color='#a8d0e6', ha='center', va='center', fontsize=8.5)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
     # 11. Cosine
     ax = axes[2, 2]
     ax.set_title("COSINE (CAH)", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
     ax.text(0.5, 0.55, "cos(θ) = Adjacent / Hypotenuse", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
-    ax.text(0.5, 0.25, "Use when finding or using
-Adjacent & Hypotenuse", color='#a8d0e6', ha='center', va='center', fontsize=8.5)
+    ax.text(0.5, 0.25, "Use when finding or using\nAdjacent & Hypotenuse", color='#a8d0e6', ha='center', va='center', fontsize=8.5)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
     # 12. Tangent & Reflection
     ax = axes[2, 3]
     ax.set_title("TANGENT & REFLECTION", color='#ffcc00', fontsize=10, fontweight='bold', pad=4)
     ax.text(0.5, 0.62, "tan(θ) = Opposite / Adjacent", color='white', ha='center', va='center', fontsize=9.5, fontweight='bold')
-    ax.text(0.5, 0.25, "Reflection: Angle In = Angle Out
-(Keep calculator in DEGREE mode!)", color='#ffcc00', ha='center', va='center', fontsize=8.5, fontweight='bold')
+    ax.text(0.5, 0.25, "Reflection: Angle In = Angle Out\n(Keep calculator in DEGREE mode!)", color='#ffcc00', ha='center', va='center', fontsize=8.5, fontweight='bold')
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
     plt.tight_layout(pad=1.0)
@@ -250,8 +245,7 @@ def draw_clerestory_window(dist, angle_deg):
     ax.add_patch(patches.Rectangle((0, 0), dist * 0.08, dist * 0.08, edgecolor='white', facecolor='none'))
     ax.text(dist * 0.72, h * 0.08, f"{angle_deg}°", color='#ffcc00', fontweight='bold', fontsize=11)
     ax.text(dist / 2, -h * 0.14, f"Floor Reach = {dist} ft", color='white', ha='center', fontweight='bold')
-    ax.text(-dist * 0.08, h / 2, "Window
-Height = ?", color='#00ffff', ha='right', va='center', fontweight='bold')
+    ax.text(-dist * 0.08, h / 2, "Window\nHeight = ?", color='#00ffff', ha='right', va='center', fontweight='bold')
     
     ax.set_xlim(-dist * 0.32, dist * 1.25)
     ax.set_ylim(-h * 0.25, h * 1.35)
@@ -282,8 +276,7 @@ def draw_light_reflection(d1, d2, angle_deg):
     ax.text(d1 + d2 * 0.18, max_h * 0.07, f"{angle_deg}°", color='#00ffff', fontweight='bold')
     ax.text(d1 / 2, -max_h * 0.1, f"{d1} ft", color='white', ha='center', fontweight='bold')
     ax.text(d1 + d2 / 2, -max_h * 0.1, f"{d2} ft", color='white', ha='center', fontweight='bold')
-    ax.text(total_w + total_w * 0.04, h2 / 2, "Target
-Height = ?", color='#00ffff', ha='left', va='center', fontweight='bold')
+    ax.text(total_w + total_w * 0.04, h2 / 2, "Target\nHeight = ?", color='#00ffff', ha='left', va='center', fontweight='bold')
     
     ax.set_xlim(-total_w * 0.15, total_w * 1.32)
     ax.set_ylim(-max_h * 0.2, max_h * 1.1)
@@ -328,8 +321,7 @@ def draw_guy_wire(post_h, angle_deg):
     
     ax.add_patch(patches.Rectangle((0, 0), ground_d * 0.08, ground_d * 0.08, edgecolor='white', facecolor='none'))
     ax.text(ground_d * 0.72, post_h * 0.08, f"{angle_deg}°", color='#ffcc00', fontweight='bold', fontsize=11)
-    ax.text(-ground_d * 0.06, post_h / 2, f"Post Height
-= {post_h} ft", color='white', ha='right', va='center', fontweight='bold')
+    ax.text(-ground_d * 0.06, post_h / 2, f"Post Height\n= {post_h} ft", color='white', ha='right', va='center', fontweight='bold')
     ax.text(ground_d * 0.55, post_h * 0.58, "Cable Length = ?", color='#ffcc00', ha='left', fontweight='bold')
     
     ax.set_xlim(-ground_d * 0.35, ground_d * 1.2)
@@ -338,6 +330,77 @@ def draw_guy_wire(post_h, angle_deg):
     ax.set_title("BLUEPRINT: STRUCTURAL GUY-WIRE CABLE", color='white', pad=8)
     return fig
 
+# --- NEW SHAPES: CIRCLE, PYRAMID, SPHERE ---
+def draw_circle_patio(diam):
+    fig, ax = plt.subplots(figsize=(6, 3.8))
+    fig.patch.set_facecolor('#1e3d59')
+    ax.set_facecolor('#1e3d59')
+    
+    c = patches.Circle((5, 5), 3.2, edgecolor='white', facecolor='#2b547e', linewidth=2)
+    ax.add_patch(c)
+    ax.plot([1.8, 8.2], [5, 5], color='#ffcc00', linestyle='--', linewidth=2)
+    ax.scatter([5], [5], color='#ffcc00', s=30, zorder=5)
+    ax.text(5, 5.4, f"Diameter = {diam} ft", color='#ffcc00', ha='center', fontweight='bold')
+    
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.set_aspect('equal')
+    ax.axis('off')
+    ax.set_title("BLUEPRINT: CIRCULAR ROTUNDA / PATIO", color='white', pad=8)
+    return fig
+
+def draw_square_pyramid(base_w, height):
+    fig, ax = plt.subplots(figsize=(6, 3.8))
+    fig.patch.set_facecolor('#1e3d59')
+    ax.set_facecolor('#1e3d59')
+    
+    base_pyr = patches.Polygon([(2.5, 2.5), (6.5, 2.5), (8.0, 4.0), (4.0, 4.0)], closed=True, edgecolor='white', facecolor='#2b547e', lw=2)
+    ax.add_patch(base_pyr)
+    apex = (5.25, 8.5)
+    for pt in [(2.5, 2.5), (6.5, 2.5), (8.0, 4.0)]:
+        ax.plot([pt[0], apex[0]], [pt[1], apex[1]], color='white', lw=2)
+    ax.plot([4.0, apex[0]], [4.0, apex[1]], color='white', ls=':', lw=1.5)
+    ax.plot([5.25, 5.25], [3.25, 8.5], color='#ffcc00', ls='--', lw=2)
+    
+    ax.text(4.5, 1.8, f"Square Base = {base_w} ft × {base_w} ft", color='white', ha='center', fontweight='bold')
+    ax.text(5.5, 5.8, f"Height = {height} ft", color='#ffcc00', ha='left', fontweight='bold')
+    
+    ax.set_xlim(0, 10.5)
+    ax.set_ylim(1, 9.5)
+    ax.axis('off')
+    ax.set_title("BLUEPRINT: PYRAMIDAL SKYLIGHT / CAP", color='white', pad=8)
+    return fig
+
+def draw_sphere_tank(diam, is_hemi=False):
+    fig, ax = plt.subplots(figsize=(6, 3.8))
+    fig.patch.set_facecolor('#1e3d59')
+    ax.set_facecolor('#1e3d59')
+    
+    if is_hemi:
+        wedge = patches.Wedge((5, 3.5), 3.3, 0, 180, edgecolor='white', facecolor='#2b547e', lw=2)
+        eq = patches.Ellipse((5, 3.5), 6.6, 1.2, edgecolor='white', facecolor='#3a6ea5', lw=1.8)
+        ax.add_patch(wedge)
+        ax.add_patch(eq)
+        ax.plot([1.7, 8.3], [3.5, 3.5], color='#ffcc00', ls='--', lw=2)
+        ax.text(5, 2.3, f"Diameter = {diam} ft", color='#ffcc00', ha='center', fontweight='bold')
+        title = "BLUEPRINT: HEMISPHERICAL DOME"
+    else:
+        sph = patches.Circle((5, 5), 3.2, edgecolor='white', facecolor='#2b547e', lw=2)
+        eq = patches.Ellipse((5, 5), 6.4, 1.4, edgecolor='white', ls='--', facecolor='none', lw=1.5)
+        ax.add_patch(sph)
+        ax.add_patch(eq)
+        ax.plot([1.8, 8.2], [5, 5], color='#ffcc00', ls='--', lw=2)
+        ax.text(5, 5.5, f"Diameter = {diam} ft", color='#ffcc00', ha='center', fontweight='bold')
+        title = "BLUEPRINT: SPHERICAL RESERVOIR / ORB"
+        
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.set_aspect('equal')
+    ax.axis('off')
+    ax.set_title(title, color='white', pad=8)
+    return fig
+
+# --- CRISIS BLUEPRINT GENERATORS ---
 def draw_crisis_trench(b1, b2, depth, length):
     fig, ax = plt.subplots(figsize=(6, 3.8))
     fig.patch.set_facecolor('#591e1e')
@@ -392,14 +455,126 @@ def draw_crisis_overhang(overhang_w, sun_angle):
     ax.add_patch(patches.Rectangle((0, drop - overhang_w * 0.08), overhang_w * 0.08, overhang_w * 0.08, edgecolor='white', facecolor='none'))
     ax.text(overhang_w * 0.65, drop * 0.85, f"{sun_angle}°", color='#ffcc00', fontweight='bold', fontsize=11)
     ax.text(overhang_w / 2, drop * 1.08, f"Overhang = {overhang_w} ft", color='white', ha='center', fontweight='bold')
-    ax.text(-overhang_w * 0.08, drop / 2, "Shadow
-Drop = ?", color='#00ffff', ha='right', va='center', fontweight='bold')
+    ax.text(-overhang_w * 0.08, drop / 2, "Shadow\nDrop = ?", color='#00ffff', ha='right', va='center', fontweight='bold')
     
     ax.set_xlim(-overhang_w * 0.35, overhang_w * 1.25)
     ax.set_ylim(-drop * 0.2, drop * 1.45)
     ax.axis('off')
     ax.set_title("🚨 CRISIS: ROOF OVERHANG GLARE BLOCK", color='#ffcc00', pad=8)
     return fig
+
+def draw_crisis_sinkhole(diam):
+    fig, ax = plt.subplots(figsize=(6, 3.8))
+    fig.patch.set_facecolor('#591e1e')
+    ax.set_facecolor('#591e1e')
+    
+    c = patches.Circle((5, 5), 3.2, edgecolor='white', facecolor='#7e2b2b', linewidth=2)
+    ax.add_patch(c)
+    ax.plot([1.8, 8.2], [5, 5], color='#ffcc00', linestyle='--', linewidth=2)
+    ax.text(5, 5.4, f"Diameter = {diam} ft", color='#ffcc00', ha='center', fontweight='bold')
+    
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.set_aspect('equal')
+    ax.axis('off')
+    ax.set_title("🚨 CRISIS: CIRCULAR FOUNDATION SINKHOLE", color='#ffcc00', pad=8)
+    return fig
+
+def draw_crisis_pyramid_cap(base_w, height):
+    fig, ax = plt.subplots(figsize=(6, 3.8))
+    fig.patch.set_facecolor('#591e1e')
+    ax.set_facecolor('#591e1e')
+    
+    base_pyr = patches.Polygon([(2.5, 2.5), (6.5, 2.5), (8.0, 4.0), (4.0, 4.0)], closed=True, edgecolor='white', facecolor='#7e2b2b', lw=2)
+    ax.add_patch(base_pyr)
+    apex = (5.25, 8.5)
+    for pt in [(2.5, 2.5), (6.5, 2.5), (8.0, 4.0)]:
+        ax.plot([pt[0], apex[0]], [pt[1], apex[1]], color='white', lw=2)
+    ax.plot([4.0, apex[0]], [4.0, apex[1]], color='white', ls=':', lw=1.5)
+    ax.plot([5.25, 5.25], [3.25, 8.5], color='#ffcc00', ls='--', lw=2)
+    
+    ax.text(4.5, 1.8, f"Square Base = {base_w} ft × {base_w} ft", color='white', ha='center', fontweight='bold')
+    ax.text(5.5, 5.8, f"Height = {height} ft", color='#ffcc00', ha='left', fontweight='bold')
+    
+    ax.set_xlim(0, 10.5)
+    ax.set_ylim(1, 9.5)
+    ax.axis('off')
+    ax.set_title("🚨 CRISIS: CRACKED PYRAMIDAL PIER CAP", color='#ffcc00', pad=8)
+    return fig
+
+def draw_crisis_sphere_buoy(diam):
+    fig, ax = plt.subplots(figsize=(6, 3.8))
+    fig.patch.set_facecolor('#591e1e')
+    ax.set_facecolor('#591e1e')
+    
+    sph = patches.Circle((5, 5), 3.2, edgecolor='white', facecolor='#7e2b2b', lw=2)
+    eq = patches.Ellipse((5, 5), 6.4, 1.4, edgecolor='white', ls='--', facecolor='none', lw=1.5)
+    ax.add_patch(sph)
+    ax.add_patch(eq)
+    ax.plot([1.8, 8.2], [5, 5], color='#ffcc00', ls='--', lw=2)
+    ax.text(5, 5.5, f"Diameter = {diam} ft", color='#ffcc00', ha='center', fontweight='bold')
+    
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.set_aspect('equal')
+    ax.axis('off')
+    ax.set_title("🚨 CRISIS: RUPTURED SPHERICAL SURGE TANK", color='#ffcc00', pad=8)
+    return fig
+
+
+# --- 5 LEVEL CONFIGURATIONS (DIFFERENT JOBS & PROGRESSIVE DIFFICULTY) ---
+LEVELS = [
+    {
+        "level": 1,
+        "job_title": "Level 1: Residential Deck & Sunroom Addition",
+        "desc": "Start your contracting career with a residential addition. Focus on 2D polygons, prisms, cylinders, and basic right-triangle trig.",
+        "budget": 45000,
+        "days": 45,
+        "contract_bonus": 8000,
+        "regular_pool": ["floor", "piers", "siding", "slab", "window", "reflection", "strut", "guywire"],
+        "crisis_pool": ["trench", "gable", "overhang"]
+    },
+    {
+        "level": 2,
+        "job_title": "Level 2: Boutique Café & Courtyard Remodel",
+        "desc": "Commercial renovation introducing circular pavers and courtyard layouts alongside structural framing.",
+        "budget": 60000,
+        "days": 45,
+        "contract_bonus": 12000,
+        "regular_pool": ["circle_patio", "floor", "piers", "siding", "window", "reflection", "strut", "guywire"],
+        "crisis_pool": ["sinkhole", "trench", "gable", "overhang"]
+    },
+    {
+        "level": 3,
+        "job_title": "Level 3: Municipal Park Pavilion & Amphitheater",
+        "desc": "Public works contract! Introducing pyramidal architectural roof caps and circular plazas.",
+        "budget": 85000,
+        "days": 45,
+        "contract_bonus": 18000,
+        "regular_pool": ["circle_patio", "pyramid_skylight", "piers", "siding", "window", "reflection", "strut", "guywire"],
+        "crisis_pool": ["sinkhole", "pyramid_cap", "overhang", "trench"]
+    },
+    {
+        "level": 4,
+        "job_title": "Level 4: Botanical Conservatory & Biodome",
+        "desc": "High-precision glass and steel structure! Introducing spherical water reservoirs and hemispherical domes.",
+        "budget": 115000,
+        "days": 45,
+        "contract_bonus": 25000,
+        "regular_pool": ["circle_patio", "pyramid_skylight", "sphere_tank", "hemi_dome", "window", "reflection", "strut", "guywire"],
+        "crisis_pool": ["sinkhole", "pyramid_cap", "sphere_buoy", "overhang"]
+    },
+    {
+        "level": 5,
+        "job_title": "Level 5: Aerospace Observatory & Testing Complex",
+        "desc": "Master Contractor finale! High-stakes engineering combining circles, pyramids, spheres, and precision optics.",
+        "budget": 150000,
+        "days": 45,
+        "contract_bonus": 35000,
+        "regular_pool": ["circle_patio", "pyramid_skylight", "sphere_tank", "hemi_dome", "window", "reflection", "strut", "guywire"],
+        "crisis_pool": ["sinkhole", "pyramid_cap", "sphere_buoy"]
+    }
+]
 
 # --- RANDOM POSITIVE WINDFALLS ---
 WINDFALL_EVENTS = [
@@ -428,78 +603,134 @@ def apply_cash_credit(amount):
         st.session_state.budget += amount
         return ""
 
-# --- BUILD PROJECT TIMELINE (1:4 RATIO) ---
-def generate_project_queue():
-    regular_events = [
-        {"type": "regular", "subtype": "floor", "title": "Living Room Hardwood Order",
-         "w1": random.choice([18, 20, 22]), "h1": random.choice([12, 14, 15]),
-         "w2": random.choice([8, 10, 12]), "h2": random.choice([6, 8, 10]), "rate": 6},
-        {"type": "regular", "subtype": "piers", "title": "Deck Foundation Piers",
-         "diam": random.choice([2, 4]), "depth": random.choice([6, 8, 10]),
-         "qty": random.choice([4, 6, 8]), "rate": 5},
-        {"type": "regular", "subtype": "siding", "title": "Front Elevation Siding",
-         "w": random.choice([24, 28, 30]), "h": random.choice([10, 12]),
-         "win_w": 3, "win_h": 4, "qty_win": random.choice([2, 3]), "rate": 7},
-        {"type": "regular", "subtype": "slab", "title": "Garage Concrete Pour",
-         "l": random.choice([20, 22, 24]), "w": random.choice([20, 24]), "thick": 0.5, "rate": 6},
-        {"type": "regular", "subtype": "window", "title": "Clerestory Window Placement",
-         "dist": random.choice([12, 15, 18]), "angle": random.choice([35, 40, 50]), "rate": 120},
-        {"type": "regular", "subtype": "reflection", "title": "Reflective Light Well Alignment",
-         "d1": random.choice([6, 8, 10]), "d2": random.choice([8, 10, 12]),
-         "angle": random.choice([38, 45, 52]), "rate": 110},
-        {"type": "regular", "subtype": "strut", "title": "Solar Panel Support Strut",
-         "base_run": random.choice([8, 10, 12]), "angle": random.choice([30, 35, 40]), "rate": 95},
-        {"type": "regular", "subtype": "guywire", "title": "Structural Guy-Wire Anchor",
-         "post_h": random.choice([12, 15, 18]), "angle": random.choice([40, 50, 55]), "rate": 85},
-    ]
+# --- BUILD SPECIFIC SCENARIO OBJECT ---
+def create_scenario(subtype, level_num):
+    scale = 1 + (level_num - 1) * 0.25  # Slightly higher rates on larger commercial jobs
     
-    crisis_events = [
-        {"type": "crisis", "subtype": "trench", "title": "🚨 CRISIS: Flash Flood Washout!",
-         "desc": "Heavy rain washed out the site access road! Fill the trapezoidal drainage trench with crushed gravel immediately so concrete trucks can reach the lot.",
-         "b1": random.choice([6, 8, 10]), "b2": random.choice([2, 4]),
-         "depth": random.choice([3, 4, 5]), "length": random.choice([15, 20, 25]), "rate": 4},
-        {"type": "crisis", "subtype": "gable", "title": "🚨 CRISIS: High Winds Tear Roof Sheathing!",
-         "desc": "A sudden windstorm ripped the sheathing off the triangular front gable before shingles were installed! Order weather-barrier panels before rain hits.",
-         "base": random.choice([20, 24, 28]), "height": random.choice([8, 10, 12]), "rate": 9},
-        {"type": "crisis", "subtype": "overhang", "title": "🚨 CRISIS: Solar Glare Inspection Hold!",
-         "desc": "The building inspector flagged dangerous afternoon glare entering the glass entryway! Build a horizontal roof overhang that casts the exact vertical shadow drop shown below.",
-         "overhang_w": random.choice([4, 5, 6]), "sun_angle": random.choice([55, 60, 65]), "rate": 140}
-    ]
+    # Regular Scenarios
+    if subtype == "floor":
+        return {"type": "regular", "subtype": "floor", "title": "Main Hall Hardwood / Tile Order",
+                "w1": random.choice([18, 20, 22, 24]), "h1": random.choice([12, 14, 15, 16]),
+                "w2": random.choice([8, 10, 12]), "h2": random.choice([6, 8, 10]), "rate": round(6 * scale)}
+    elif subtype == "piers":
+        return {"type": "regular", "subtype": "piers", "title": "Structural Foundation Piers",
+                "diam": random.choice([2, 4, 6]), "depth": random.choice([6, 8, 10]),
+                "qty": random.choice([4, 6, 8]), "rate": round(5 * scale)}
+    elif subtype == "siding":
+        return {"type": "regular", "subtype": "siding", "title": "Exterior Cladding & Facade",
+                "w": random.choice([24, 28, 30, 32]), "h": random.choice([10, 12, 14]),
+                "win_w": 3, "win_h": 4, "qty_win": random.choice([2, 3, 4]), "rate": round(7 * scale)}
+    elif subtype == "slab":
+        return {"type": "regular", "subtype": "slab", "title": "Reinforced Concrete Slab Pour",
+                "l": random.choice([20, 22, 24]), "w": random.choice([20, 24]), "thick": 0.5, "rate": round(6 * scale)}
+    elif subtype == "window":
+        return {"type": "regular", "subtype": "window", "title": "Clerestory Window Placement",
+                "dist": random.choice([12, 15, 18, 20]), "angle": random.choice([35, 40, 50]), "rate": round(120 * scale)}
+    elif subtype == "reflection":
+        return {"type": "regular", "subtype": "reflection", "title": "Reflective Light Well Alignment",
+                "d1": random.choice([6, 8, 10]), "d2": random.choice([8, 10, 12, 14]),
+                "angle": random.choice([38, 45, 52]), "rate": round(110 * scale)}
+    elif subtype == "strut":
+        return {"type": "regular", "subtype": "strut", "title": "Solar / Roof Support Strut",
+                "base_run": random.choice([8, 10, 12, 14]), "angle": random.choice([30, 35, 40]), "rate": round(95 * scale)}
+    elif subtype == "guywire":
+        return {"type": "regular", "subtype": "guywire", "title": "Structural Guy-Wire Anchor",
+                "post_h": random.choice([12, 15, 18, 20]), "angle": random.choice([40, 50, 55]), "rate": round(85 * scale)}
+    elif subtype == "circle_patio":
+        return {"type": "regular", "subtype": "circle_patio", "title": "Circular Plaza Stone Pavers",
+                "diam": random.choice([14, 16, 18, 20, 24]), "rate": round(8 * scale)}
+    elif subtype == "pyramid_skylight":
+        return {"type": "regular", "subtype": "pyramid_skylight", "title": "Pyramidal Atrium Cap Insulation",
+                "base_w": random.choice([9, 12, 15, 18]), "height": random.choice([6, 8, 10, 12]), "rate": round(5 * scale)}
+    elif subtype == "sphere_tank":
+        return {"type": "regular", "subtype": "sphere_tank", "title": "Spherical Thermal Fluid Reservoir",
+                "diam": random.choice([6, 8, 10, 12]), "rate": round(4 * scale)}
+    elif subtype == "hemi_dome":
+        return {"type": "regular", "subtype": "hemi_dome", "title": "Hemispherical Dome Acoustic Fill",
+                "diam": random.choice([10, 12, 14, 16]), "rate": round(3 * scale)}
+
+    # Crisis Scenarios
+    elif subtype == "trench":
+        return {"type": "crisis", "subtype": "trench", "title": "🚨 CRISIS: Flash Flood Washout!",
+                "desc": "Heavy rain washed out the site access road! Fill the trapezoidal drainage trench with crushed gravel immediately so trucks can reach the lot.",
+                "b1": random.choice([6, 8, 10]), "b2": random.choice([2, 4]),
+                "depth": random.choice([3, 4, 5]), "length": random.choice([15, 20, 25]), "rate": round(4 * scale)}
+    elif subtype == "gable":
+        return {"type": "crisis", "subtype": "gable", "title": "🚨 CRISIS: High Winds Tear Roof Sheathing!",
+                "desc": "A sudden windstorm ripped the sheathing off the triangular front gable before roofing was installed! Order weather-barrier panels immediately.",
+                "base": random.choice([20, 24, 28]), "height": random.choice([8, 10, 12]), "rate": round(9 * scale)}
+    elif subtype == "overhang":
+        return {"type": "crisis", "subtype": "overhang", "title": "🚨 CRISIS: Solar Glare Inspection Hold!",
+                "desc": "The building inspector flagged dangerous afternoon glare entering the glass facade! Build a horizontal overhang casting the exact vertical shadow drop shown.",
+                "overhang_w": random.choice([4, 5, 6]), "sun_angle": random.choice([55, 60, 65]), "rate": round(140 * scale)}
+    elif subtype == "sinkhole":
+        return {"type": "crisis", "subtype": "sinkhole", "title": "🚨 CRISIS: Circular Courtyard Sinkhole!",
+                "desc": "Subsurface erosion collapsed a circular section of the courtyard subfloor! Order heavy-duty steel decking plates to cover the exact circular area.",
+                "diam": random.choice([10, 12, 14, 16]), "rate": round(11 * scale)}
+    elif subtype == "pyramid_cap":
+        return {"type": "crisis", "subtype": "pyramid_cap", "title": "🚨 CRISIS: Cracked Pyramidal Pier Cap!",
+                "desc": "Stress fractures appeared in the main pyramidal anchor monument! Pour high-strength concrete to replace the entire pyramid volume.",
+                "base_w": random.choice([6, 9, 12]), "height": random.choice([5, 7, 8]), "rate": round(7 * scale)}
+    elif subtype == "sphere_buoy":
+        return {"type": "crisis", "subtype": "sphere_buoy", "title": "🚨 CRISIS: Ruptured Spherical Surge Tank!",
+                "desc": "A pressure surge cracked the spherical water ballast tank! Fill the replacement spherical tank with specialized stabilizer gel.",
+                "diam": random.choice([6, 8, 10]), "rate": round(6 * scale)}
+
+# --- BUILD 10-SCENARIO PROJECT TIMELINE (8 NORMAL, 2 CRISIS) ---
+def generate_project_queue(level_idx):
+    lvl_cfg = LEVELS[level_idx]
+    level_num = lvl_cfg["level"]
     
-    selected_regular = random.sample(regular_events, 8)
-    selected_crisis = random.sample(crisis_events, 2)
+    # Guarantee new shapes appear in their introduced levels while sampling 8 total regular events
+    reg_pool = list(lvl_cfg["regular_pool"])
+    random.shuffle(reg_pool)
+    selected_reg_types = reg_pool[:8]
     
-    # 1:4 ratio (2 crises among 8 regular milestones)
-    timeline = selected_regular[:3] + [selected_crisis[0]] + selected_regular[3:6] + [selected_crisis[1]] + selected_regular[6:]
+    cris_pool = list(lvl_cfg["crisis_pool"])
+    selected_cris_types = random.sample(cris_pool, 2)
+    
+    regular_events = [create_scenario(st_name, level_num) for st_name in selected_reg_types]
+    crisis_events = [create_scenario(st_name, level_num) for st_name in selected_cris_types]
+    
+    # 8 regular + 2 crisis = 10 scenarios
+    timeline = regular_events[:3] + [crisis_events[0]] + regular_events[3:6] + [crisis_events[1]] + regular_events[6:]
     return timeline
 
 # --- INITIALIZE SESSION STATE ---
 if "started" not in st.session_state:
     st.session_state.started = False
     st.session_state.student_name = ""
+    st.session_state.level_idx = 0
     st.session_state.idx = 0
-    st.session_state.budget = 45000
+    st.session_state.budget = LEVELS[0]["budget"]
     st.session_state.debt = 0
-    st.session_state.days = 45
+    st.session_state.days = LEVELS[0]["days"]
     st.session_state.reputation = 100
-    st.session_state.queue = generate_project_queue()
+    st.session_state.queue = generate_project_queue(0)
     st.session_state.history = []
-    st.session_state.hints_level = {} # Tracks 0, 1, 2, or 3 hints unlocked per stage
+    st.session_state.hints_level = {}
+    st.session_state.total_paid_hints = 0
+    st.session_state.exact_count = 0
+    st.session_state.level_summaries = []  # Stores per-level audit records
+
+def setup_level(level_idx):
+    lvl_cfg = LEVELS[level_idx]
+    st.session_state.level_idx = level_idx
+    st.session_state.idx = 0
+    st.session_state.budget = lvl_cfg["budget"]
+    st.session_state.debt = 0
+    st.session_state.days = lvl_cfg["days"]
+    st.session_state.queue = generate_project_queue(level_idx)
+    st.session_state.history = []
+    st.session_state.hints_level = {}
     st.session_state.total_paid_hints = 0
     st.session_state.exact_count = 0
 
 def reset_game():
     st.session_state.started = False
-    st.session_state.idx = 0
-    st.session_state.budget = 45000
-    st.session_state.debt = 0
-    st.session_state.days = 45
     st.session_state.reputation = 100
-    st.session_state.queue = generate_project_queue()
-    st.session_state.history = []
-    st.session_state.hints_level = {}
-    st.session_state.total_paid_hints = 0
-    st.session_state.exact_count = 0
+    st.session_state.level_summaries = []
+    setup_level(0)
 
 def process_transaction(cost, is_exact, msg_exact, msg_error):
     bonus = 750 if is_exact else 0
@@ -513,7 +744,7 @@ def process_transaction(cost, is_exact, msg_exact, msg_error):
         st.session_state.history.append(("success", msg_exact + bonus_note))
     else:
         st.session_state.days -= 6
-        st.session_state.reputation -= 15
+        st.session_state.reputation = max(0, st.session_state.reputation - 15)
         st.session_state.history.append(("error", msg_error))
 
     st.session_state.budget -= cost
@@ -533,7 +764,11 @@ def process_transaction(cost, is_exact, msg_exact, msg_error):
         st.session_state.history.append(("info", windfall["msg"] + extra_note))
 
 # --- TOP DASHBOARD ---
+current_lvl = LEVELS[st.session_state.level_idx]
 st.title("🚧 Contractor's Crisis")
+if st.session_state.started:
+    st.caption(f"📋 **{current_lvl['job_title']}** ({st.session_state.level_idx + 1} of {len(LEVELS)})")
+
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("💰 Cash Budget", f"${st.session_state.budget:,}")
 c2.metric("🏦 Credit Debt", f"${st.session_state.debt:,}", delta=f"-${st.session_state.debt:,}" if st.session_state.debt > 0 else None, delta_color="inverse")
@@ -543,16 +778,19 @@ st.divider()
 
 # --- INTRO SCREEN ---
 if not st.session_state.started:
-    st.subheader("Welcome to Contractor's Crisis!")
+    st.subheader("Welcome to Contractor's Crisis: 5-Level Career Mode!")
     st.write("""
-    You have **45 days** and **$45,000** to complete a 10-stage construction project. 
-    * **Regular Milestones (8):** Order materials and size architectural fixtures accurately using 2D Area, 3D Volume, and Right-Triangle Trigonometry.
-    * **Crisis Events (2):** Unexpected site emergencies will strike!
-    * **Free Visual Formula Sheet:** Reference all 2D, 3D, and Trigonometry diagrams at any time for free.
-    * **Progressive Engineer Hints ($250 each):** Stuck on a job? Unlock up to **3 step-by-step hints** per stage—from identifying what needs to be measured all the way to the filled-in formula.
+    Complete **5 progressive construction contracts**, each featuring **10 scenarios** (**8 regular milestones** and **2 emergency crisis events**):
+    * **Level 1:** Residential Deck & Sunroom Addition *(Polygons, Prisms, Cylinders & Trig)*
+    * **Level 2:** Boutique Café & Courtyard Remodel *(Adds Circles)*
+    * **Level 3:** Municipal Park Pavilion & Amphitheater *(Adds Pyramids)*
+    * **Level 4:** Botanical Conservatory & Biodome *(Adds Spheres & Hemispheres)*
+    * **Level 5:** Aerospace Observatory & Testing Complex *(Master Comprehensive Build)*
+    
+    Download an official audit receipt after every level, and unlock a **Full Career Synopsis Report** at the end of Level 5!
     """)
     name_input = st.text_input("Enter Contractor / Student Name:", value=st.session_state.student_name, placeholder="e.g., Jordan Smith")
-    if st.button("Break Ground ➡️"):
+    if st.button("Break Ground on Level 1 ➡️"):
         st.session_state.student_name = name_input.strip() if name_input.strip() else "Anonymous Contractor"
         st.session_state.started = True
         st.rerun()
@@ -572,7 +810,7 @@ elif st.session_state.idx < len(st.session_state.queue):
 
     stage_num = st.session_state.idx
     event = st.session_state.queue[stage_num]
-    st.caption(f"STAGE {stage_num + 1} OF {len(st.session_state.queue)} | CONTRACTOR: {st.session_state.student_name.upper()}")
+    st.caption(f"LEVEL {current_lvl['level']} — STAGE {stage_num + 1} OF {len(st.session_state.queue)} | CONTRACTOR: {st.session_state.student_name.upper()}")
     
     if event["type"] == "crisis":
         st.subheader(event["title"])
@@ -584,7 +822,7 @@ elif st.session_state.idx < len(st.session_state.queue):
     
     # --- CONFIGURE SCENARIO TASK, BLUEPRINT, AND 3 PROGRESSIVE HINTS ---
     if sub == "floor":
-        st.write(f"Determine how many square feet of hardwood flooring need to be ordered to cover the entire L-shaped room shown below. Flooring costs **${event['rate']}/sq ft**.")
+        st.write(f"Determine how many square feet of flooring need to be ordered to cover the entire L-shaped room shown below. Flooring costs **${event['rate']}/sq ft**.")
         st.pyplot(draw_composite_floor(event["w1"], event["h1"], event["w2"], event["h2"]))
         correct = (event["w1"] * event["h1"]) + (event["w2"] * event["h2"])
         unit = "sq ft"
@@ -609,7 +847,7 @@ elif st.session_state.idx < len(st.session_state.queue):
         ]
 
     elif sub == "siding":
-        st.write(f"Determine how many square feet of exterior siding need to be ordered to cover the front wall without covering the windows. Siding costs **${event['rate']}/sq ft**.")
+        st.write(f"Determine how many square feet of exterior cladding need to be ordered to cover the wall without covering the windows. Material costs **${event['rate']}/sq ft**.")
         st.pyplot(draw_siding_wall(event["w"], event["h"], event["win_w"], event["win_h"], event["qty_win"]))
         correct = (event["w"] * event["h"]) - (event["qty_win"] * event["win_w"] * event["win_h"])
         unit = "sq ft"
@@ -621,7 +859,7 @@ elif st.session_state.idx < len(st.session_state.queue):
         ]
 
     elif sub == "slab":
-        st.write(f"Determine how many cubic feet of cement need to be ordered to pour a rectangular garage foundation measuring **{event['l']} ft long × {event['w']} ft wide × {event['thick']} ft (6 inches) thick**. Cement costs **${event['rate']}/cu ft**.")
+        st.write(f"Determine how many cubic feet of cement need to be ordered to pour a rectangular foundation measuring **{event['l']} ft long × {event['w']} ft wide × {event['thick']} ft (6 inches) thick**. Cement costs **${event['rate']}/cu ft**.")
         correct = round(event["l"] * event["w"] * event["thick"])
         unit = "cu ft"
         tol = 0
@@ -656,7 +894,7 @@ elif st.session_state.idx < len(st.session_state.queue):
         ]
 
     elif sub == "strut":
-        st.write(f"A solar panel frame spans a **{event['base_run']} ft** horizontal roof run and tilts upward at **{event['angle']}°**. Determine the required length (to the nearest whole foot) of the diagonal support strut. Steel struts cost **${event['rate']}/ft**.")
+        st.write(f"A structural frame spans a **{event['base_run']} ft** horizontal roof run and tilts upward at **{event['angle']}°**. Determine the required length (to the nearest whole foot) of the diagonal support strut. Steel struts cost **${event['rate']}/ft**.")
         st.pyplot(draw_solar_strut(event["base_run"], event["angle"]))
         correct = round(event["base_run"] / math.cos(math.radians(event["angle"])))
         unit = "ft"
@@ -677,6 +915,58 @@ elif st.session_state.idx < len(st.session_state.queue):
             "**Hint 1 (Goal):** Find the length of the diagonal cable (the Hypotenuse) stretching from the top of the post to the ground.",
             "**Hint 2 (Formula):** Since you know the Opposite vertical height and need the Hypotenuse, use **sin(θ) = Opposite / Hypotenuse**.",
             f"**Hint 3 (Setup):** **sin({event['angle']}°) = {event['post_h']} / Cable**, so Cable Length = **{event['post_h']} / sin({event['angle']}°)**."
+        ]
+
+    elif sub == "circle_patio":
+        st.write(f"Determine how many square feet of stone pavers need to be ordered to cover the circular plaza shown below (round to the nearest whole square foot). Pavers cost **${event['rate']}/sq ft**.")
+        st.pyplot(draw_circle_patio(event["diam"]))
+        r = event["diam"] / 2
+        correct = round(math.pi * (r ** 2))
+        unit = "sq ft"
+        tol = 2
+        hints = [
+            "**Hint 1 (Goal):** Find the 2D area of the circular courtyard plaza.",
+            "**Hint 2 (Formula):** Use the circle area formula **A = π · r²** (remember radius **r** is half of the diameter!).",
+            f"**Hint 3 (Setup):** Radius = **{r} ft**. Plaza Area = **π · ({r}²)**."
+        ]
+
+    elif sub == "pyramid_skylight":
+        st.write(f"Determine how many cubic feet of thermal aerogel insulation are needed to fill the square-based pyramidal atrium cap shown below (round to the nearest whole cubic foot). Aerogel costs **${event['rate']}/cu ft**.")
+        st.pyplot(draw_square_pyramid(event["base_w"], event["height"]))
+        base_area = event["base_w"] ** 2
+        correct = round((1 / 3) * base_area * event["height"])
+        unit = "cu ft"
+        tol = 2
+        hints = [
+            "**Hint 1 (Goal):** Find the 3D volume of a square pyramid by first finding the square Base Area (**B**), then multiplying by ⅓ and the height.",
+            "**Hint 2 (Formula):** Use **V = ⅓ · B · h**, where **B = side × side** for a square base.",
+            f"**Hint 3 (Setup):** Base Area **B = {event['base_w']} × {event['base_w']} = {base_area}**. Volume = **(1/3) · {base_area} · {event['height']}**."
+        ]
+
+    elif sub == "sphere_tank":
+        st.write(f"Determine how many cubic feet of thermal fluid are required to completely fill the spherical reservoir shown below (round to the nearest whole cubic foot). Fluid costs **${event['rate']}/cu ft**.")
+        st.pyplot(draw_sphere_tank(event["diam"], is_hemi=False))
+        r = event["diam"] / 2
+        correct = round((4 / 3) * math.pi * (r ** 3))
+        unit = "cu ft"
+        tol = 3
+        hints = [
+            "**Hint 1 (Goal):** Find the 3D volume of the full sphere using its radius.",
+            "**Hint 2 (Formula):** Use the sphere volume formula **V = (4/3) · π · r³** (don't forget to cube the radius and divide diameter by 2!).",
+            f"**Hint 3 (Setup):** Radius = **{r} ft**. Volume = **(4/3) · π · ({r}³)**."
+        ]
+
+    elif sub == "hemi_dome":
+        st.write(f"Determine how many cubic feet of acoustic foam baffle fill are needed for the hemispherical dome ceiling shown below (round to the nearest whole cubic foot). Foam costs **${event['rate']}/cu ft**.")
+        st.pyplot(draw_sphere_tank(event["diam"], is_hemi=True))
+        r = event["diam"] / 2
+        correct = round(0.5 * (4 / 3) * math.pi * (r ** 3))
+        unit = "cu ft"
+        tol = 3
+        hints = [
+            "**Hint 1 (Goal):** A hemisphere is exactly half of a sphere. Calculate the full sphere volume and divide by 2.",
+            "**Hint 2 (Formula):** Use **V = ½ · (4/3) · π · r³** (or **(2/3) · π · r³**).",
+            f"**Hint 3 (Setup):** Radius = **{r} ft**. Hemisphere Volume = **0.5 · (4/3) · π · ({r}³)**."
         ]
 
     elif sub == "trench":
@@ -715,6 +1005,45 @@ elif st.session_state.idx < len(st.session_state.queue):
             f"**Hint 3 (Setup):** **tan({event['sun_angle']}°) = Drop / {event['overhang_w']}**, so Shadow Drop = **{event['overhang_w']} × tan({event['sun_angle']}°)**."
         ]
 
+    elif sub == "sinkhole":
+        st.write(f"Determine how many square feet of heavy-duty steel decking plates need to be ordered to cover the circular sinkhole (round to the nearest whole square foot). Steel plate costs **${event['rate']}/sq ft**.")
+        st.pyplot(draw_crisis_sinkhole(event["diam"]))
+        r = event["diam"] / 2
+        correct = round(math.pi * (r ** 2))
+        unit = "sq ft"
+        tol = 2
+        hints = [
+            "**Hint 1 (Goal):** Find the 2D area of the circular sinkhole opening.",
+            "**Hint 2 (Formula):** Use the circle area formula **A = π · r²** (radius **r** is half of the diameter).",
+            f"**Hint 3 (Setup):** Radius = **{r} ft**. Sinkhole Area = **π · ({r}²)**."
+        ]
+
+    elif sub == "pyramid_cap":
+        st.write(f"Determine how many cubic feet of high-strength concrete are required to pour the replacement square-based pyramidal pier cap (round to the nearest whole cubic foot). Concrete costs **${event['rate']}/cu ft**.")
+        st.pyplot(draw_crisis_pyramid_cap(event["base_w"], event["height"]))
+        base_area = event["base_w"] ** 2
+        correct = round((1 / 3) * base_area * event["height"])
+        unit = "cu ft"
+        tol = 2
+        hints = [
+            "**Hint 1 (Goal):** Calculate the 3D volume of the square pyramid.",
+            "**Hint 2 (Formula):** Use **V = ⅓ · B · h**, where **B = side × side**.",
+            f"**Hint 3 (Setup):** Base Area **B = {event['base_w']} × {event['base_w']} = {base_area}**. Volume = **(1/3) · {base_area} · {event['height']}**."
+        ]
+
+    elif sub == "sphere_buoy":
+        st.write(f"Determine how many cubic feet of stabilizer gel are required to fill the replacement spherical surge tank (round to the nearest whole cubic foot). Gel costs **${event['rate']}/cu ft**.")
+        st.pyplot(draw_crisis_sphere_buoy(event["diam"]))
+        r = event["diam"] / 2
+        correct = round((4 / 3) * math.pi * (r ** 3))
+        unit = "cu ft"
+        tol = 3
+        hints = [
+            "**Hint 1 (Goal):** Calculate the 3D volume of the sphere using its radius.",
+            "**Hint 2 (Formula):** Use **V = (4/3) · π · r³**.",
+            f"**Hint 3 (Setup):** Radius = **{r} ft**. Volume = **(4/3) · π · ({r}³)**."
+        ]
+
     # --- TWO-TIER HINT SYSTEM ---
     with st.expander("📐 Free Visual Formula Reference Sheet (2D, 3D & Trig)"):
         st.pyplot(generate_formula_sheet())
@@ -737,7 +1066,6 @@ elif st.session_state.idx < len(st.session_state.queue):
         else:
             st.button("✅ All 3 Hints Unlocked", disabled=True, key=f"hint_done_{stage_num}")
 
-    # Display all unlocked progressive hints for this stage
     for lvl in range(current_hint_lvl):
         st.info(hints[lvl])
 
@@ -778,7 +1106,7 @@ elif st.session_state.idx < len(st.session_state.queue):
         st.session_state.idx += 1
         st.rerun()
 
-# --- FINAL SUMMARY & AUDIT RECEIPT ---
+# --- LEVEL COMPLETE & FINAL CAREER SYNOPSIS ---
 else:
     for status, text in st.session_state.history:
         if status == "success":
@@ -790,49 +1118,137 @@ else:
         elif status == "info":
             st.info(text)
 
-    st.subheader("🏁 Build Complete: Final Company Audit")
-    net_profit = st.session_state.budget - st.session_state.debt
+    lvl_num = current_lvl["level"]
     total_stages = len(st.session_state.queue)
     accuracy_pct = round((st.session_state.exact_count / total_stages) * 100)
-    
-    if net_profit > 0 and st.session_state.days >= 0 and st.session_state.debt == 0:
-        st.balloons()
-        outcome = "MASTER CONTRACTOR (PASSED ON TIME & UNDER BUDGET)"
-        st.success(f"🏆 **Master Contractor!** You finished with **${net_profit:,}** net profit, **$0 debt**, and **{st.session_state.days} days** to spare!")
-    elif net_profit > 0 and st.session_state.debt > 0:
-        outcome = "SURVIVED THE CRISIS (FINISHED WITH CREDIT DEBT)"
-        st.warning(f"⚠️ **Survived the Crisis!** You finished with **${st.session_state.debt:,}** in remaining credit debt, leaving a net balance of **${net_profit:,}**.")
+    contract_payout = current_lvl["contract_bonus"] if st.session_state.days >= 0 else round(current_lvl["contract_bonus"] * 0.5)
+    level_net_earned = (st.session_state.budget - st.session_state.debt) + contract_payout
+    days_diff = st.session_state.days  # Positive = ahead of schedule, Negative = behind schedule
+
+    if level_net_earned > 0 and days_diff >= 0 and st.session_state.debt == 0:
+        outcome = "ON TIME & UNDER BUDGET"
+    elif level_net_earned > 0:
+        outcome = "COMPLETED WITH OVERRUNS"
     else:
-        outcome = "BUDGET OVERRUN / DEADLINE MISSED"
-        st.error(f"📉 **Bankruptcy Warning!** Cost overruns and crisis events left your company **${abs(net_profit):,}** in the hole.")
+        outcome = "BUDGET / SCHEDULE DEFICIT"
+
+    # Record current level summary once when reached
+    if len(st.session_state.level_summaries) < lvl_num:
+        st.session_state.level_summaries.append({
+            "level": lvl_num,
+            "job_title": current_lvl["job_title"],
+            "outcome": outcome,
+            "exact_count": st.session_state.exact_count,
+            "total_stages": total_stages,
+            "accuracy_pct": accuracy_pct,
+            "paid_hints": st.session_state.total_paid_hints,
+            "days_diff": days_diff,
+            "reputation": st.session_state.reputation,
+            "remaining_cash": st.session_state.budget,
+            "unpaid_debt": st.session_state.debt,
+            "contract_payout": contract_payout,
+            "net_earned": level_net_earned
+        })
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    receipt_text = f"""==================================================
-        CONTRACTOR'S CRISIS - FINAL AUDIT
+    schedule_str = f"{days_diff} days ahead of schedule" if days_diff >= 0 else f"{abs(days_diff)} days behind schedule"
+
+    # --- CHECK IF THIS IS THE FINAL LEVEL (LEVEL 5) ---
+    if lvl_num == len(LEVELS):
+        st.subheader("🏆 Career Complete: Final 5-Level Synopsis")
+        total_career_earned = sum(item["net_earned"] for item in st.session_state.level_summaries)
+        total_career_days = sum(item["days_diff"] for item in st.session_state.level_summaries)
+        final_rep = st.session_state.reputation
+        career_sched_str = f"{total_career_days} days ahead of schedule" if total_career_days >= 0 else f"{abs(total_career_days)} days behind schedule"
+
+        if total_career_earned > 0 and total_career_days >= 0 and final_rep >= 75:
+            st.balloons()
+            st.success(f"🎉 **Master Contractor!** You completed all 5 jobs with **${total_career_earned:,}** total earned, **{career_sched_str}**, and a **{final_rep}%** reputation rating!")
+        else:
+            st.warning(f"📋 **All 5 Contracts Completed!** Total Earned: **${total_career_earned:,}** | Schedule: **{career_sched_str}** | Final Reputation: **{final_rep}%**")
+
+        # Build Level-by-Level Synopsis Receipt
+        level_lines = []
+        for s in st.session_state.level_summaries:
+            lvl_sched = f"+{s['days_diff']} days ahead" if s['days_diff'] >= 0 else f"{s['days_diff']} days behind"
+            level_lines.append(
+                f"{s['job_title']}\n"
+                f"  Status     : {s['outcome']}\n"
+                f"  Accuracy   : {s['exact_count']}/{s['total_stages']} ({s['accuracy_pct']}%) | Hints Used: {s['paid_hints']}\n"
+                f"  Schedule   : {lvl_sched} | End Rep: {s['reputation']}%\n"
+                f"  Net Earned : ${s['net_earned']:,} (Includes ${s['contract_payout']:,} completion payout)"
+            )
+        synopsis_body = "\n--------------------------------------------------\n".join(level_lines)
+
+        final_synopsis_text = f"""==================================================
+   CONTRACTOR'S CRISIS - FINAL CAREER SYNOPSIS
 ==================================================
 Contractor Name : {st.session_state.student_name}
+Completion Date : {timestamp}
+--------------------------------------------------
+{synopsis_body}
+==================================================
+CAREER TOTALS (ALL 5 LEVELS)
+--------------------------------------------------
+Total $ Earned         : ${total_career_earned:,}
+Net Schedule Standing  : {career_sched_str}
+Final Reputation Rating: {final_rep}%
+==================================================
+"""
+        st.code(final_synopsis_text, language="text")
+        st.download_button(
+            label="📄 Download Final Career Synopsis (.txt)",
+            data=final_synopsis_text,
+            file_name=f"Contractors_Crisis_FINAL_SYNOPSIS_{st.session_state.student_name.replace(' ', '_')}.txt",
+            mime="text/plain"
+        )
+
+        if st.button("Start New 5-Level Career 🔄"):
+            reset_game()
+            st.rerun()
+
+    # --- INTERMEDIATE LEVEL COMPLETE (LEVELS 1–4) ---
+    else:
+        st.subheader(f"🏁 {current_lvl['job_title']} — Complete!")
+        if level_net_earned > 0 and days_diff >= 0 and st.session_state.debt == 0:
+            st.balloons()
+            st.success(f"🏆 **Job Complete!** You earned **${level_net_earned:,}** (including your **${contract_payout:,}** completion payout) and finished **{schedule_str}**!")
+        elif level_net_earned > 0:
+            st.warning(f"⚠️ **Job Complete with Overruns!** Net Earned: **${level_net_earned:,}** | Schedule: **{schedule_str}**.")
+        else:
+            st.error(f"📉 **Job Finished in Deficit!** Net Balance: **-${abs(level_net_earned):,}** | Schedule: **{schedule_str}**.")
+
+        receipt_text = f"""==================================================
+     CONTRACTOR'S CRISIS - LEVEL {lvl_num} AUDIT
+==================================================
+Contractor Name : {st.session_state.student_name}
+Job Contract    : {current_lvl['job_title']}
 Completion Date : {timestamp}
 Project Status  : {outcome}
 --------------------------------------------------
 Exact Blueprints: {st.session_state.exact_count} / {total_stages} ({accuracy_pct}%)
 Paid Hints Used : {st.session_state.total_paid_hints} (-${st.session_state.total_paid_hints * 250:,})
-Days Remaining  : {st.session_state.days} days
+Schedule Status : {schedule_str}
 Client Rating   : {st.session_state.reputation}%
 --------------------------------------------------
 Remaining Cash  : ${st.session_state.budget:,}
 Unpaid Debt     : ${st.session_state.debt:,}
-NET PROFIT      : ${net_profit:,}
+Contract Payout : ${contract_payout:,}
+LEVEL NET EARNED: ${level_net_earned:,}
 ==================================================
 """
-    st.code(receipt_text, language="text")
-    
-    st.download_button(
-        label="📄 Download Audit Receipt (.txt)",
-        data=receipt_text,
-        file_name=f"Contractors_Crisis_{st.session_state.student_name.replace(' ', '_')}.txt",
-        mime="text/plain"
-    )
-
-    if st.button("Start New Contract 🔄"):
-        reset_game()
-        st.rerun()
+        st.code(receipt_text, language="text")
+        
+        col_btn1, col_btn2 = st.columns(2)
+        with col_btn1:
+            st.download_button(
+                label=f"📄 Download Level {lvl_num} Audit (.txt)",
+                data=receipt_text,
+                file_name=f"Contractors_Crisis_Level{lvl_num}_{st.session_state.student_name.replace(' ', '_')}.txt",
+                mime="text/plain"
+            )
+        with col_btn2:
+            next_lvl_title = LEVELS[st.session_state.level_idx + 1]["job_title"]
+            if st.button(f"Advance to {next_lvl_title} ➡️"):
+                setup_level(st.session_state.level_idx + 1)
+                st.rerun()
